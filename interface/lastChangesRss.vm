@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE rss [<!ENTITY % HTMLlat1 PUBLIC "-//W3C//ENTITIES Latin 1 for XHTML//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml-lat1.ent">]>
+
+${res.setContentType("text/xml")}
+
+#parse("interface/includes/imports.vm")
+
+<rss version="2.0" xml:base="$path/lastChangesRss.pr"
+ xmlns:content="http://purl.org/rss/1.0/modules/content/">
+   <channel>
+      
+	<title>$siteName :: $action.getText('priki.lastChangesMenuItem')</title>
+	<link>$path</link>
+	<description>$siteName :: $slogan</description>
+	<language>${defaultI18n.replaceAll("_","-")}</language>
+	<copyright>$action.removeHTML($action.getText('priki.footer.copyright').replaceAll("&copy;", ""))</copyright>
+	<category>$action.removeHTML($action.getText('priki.lastChangesMenuItem'))</category>
+	<generator>$action.removeHTML($action.getText('priki.footer.poweredby'))</generator>
+	<docs>http://blogs.law.harvard.edu/tech/rss</docs>
+		
+#foreach($key in ${lastChanged.keySet()})
+      <item>
+         <title>${lastChanged.get($key)}</title>
+         #set($link = "$path/wiki/${lastChanged.get($key).getKeyword().replaceAll(' ', '+')}")
+         <link>${action.getURL($link)}</link>
+         <guid>${action.getURL($link)}</guid>
+         <pubDate>$action.dateRFCFormat(${lastChanged.get($key).getDefinition().getPostDate()})</pubDate>
+         <content:encoded> <![CDATA[ ${action.getWikiwordFormattedWithLinks($lastChanged.get($key).getKeyword())}
+              <BR>
+              #if (  $lastChanged.get($key).getRelated().size() > 0)
+              <p>$action.getText('priki.talkingAboutThisPage', [$lastChanged.get($key)])</p>
+              <ul>
+              #foreach ($result in $lastChanged.get($key).getRelated())
+                 <li><a href="$basePath/wiki/$result">$result</a></li>
+              #end
+              </ul>
+              #end         
+         ]]> </content:encoded>
+      </item>
+#end
+
+   </channel>
+
+</rss>

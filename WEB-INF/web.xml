@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+    <display-name>Priki, the prevalent wiki</display-name>
+
+    <session-config>
+        <session-timeout>60</session-timeout>
+    </session-config>
+
+    <filter>
+        <filter-name>UrlRewriteFilter</filter-name>
+        <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+        
+        <init-param>
+            <param-name>logLevel</param-name>
+            <param-value>DEBUG</param-value>
+        </init-param>
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>UrlRewriteFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+	<servlet>
+		<servlet-name>webwork</servlet-name>
+		<servlet-class>com.opensymphony.webwork.dispatcher.ServletDispatcher</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>webwork</servlet-name>
+		<url-pattern>*.pr</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Captcha</servlet-name>
+		<display-name>Captcha</display-name>
+		<servlet-class>nl.captcha.servlet.CaptchaServlet</servlet-class>
+		
+		<init-param>
+			<param-name>cap.font.color</param-name>
+			<param-value>166,31,255</param-value>
+		</init-param>
+	
+		
+ <init-param>
+<param-name>cap.font.arr</param-name>
+<param-value>Arial</param-value>
+</init-param>	
+		
+ <init-param>
+<param-name>cap.char.arr</param-name>
+<param-value>1,2,3,4,5,6,7,8,9,0</param-value>
+</init-param>
+
+<!--if default captcha producer is slelected this value represents the amount of chars that are supplied in the captcha. values below 2 are not exepted when omitted defaults to 5-->
+<init-param>
+<param-name>cap.char.arr.l</param-name>
+<param-value>3</param-value>
+</init-param>		
+		
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Captcha</servlet-name>
+		<url-pattern>/flood.jpg</url-pattern>
+	</servlet-mapping>
+
+	<servlet> 
+		<servlet-name>velocity</servlet-name> 
+		<servlet-class>com.opensymphony.webwork.views.velocity.WebWorkVelocityServlet</servlet-class> 
+		<load-on-startup>1</load-on-startup> 
+	</servlet> 
+
+	<servlet-mapping> 
+		<servlet-name>velocity</servlet-name> 
+		<url-pattern>*.vm</url-pattern> 
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>webwork</servlet-name>
+		<url-pattern>/index</url-pattern>
+	</servlet-mapping>	
+
+	<taglib>
+		<taglib-uri>webwork</taglib-uri>
+		<taglib-location>/WEB-INF/lib/webwork.jar</taglib-location>
+	</taglib>
+	
+	<welcome-file-list>
+        <welcome-file>index</welcome-file>
+    </welcome-file-list>
+    
+    <error-page>
+        <error-code>5000</error-code>
+        <location>/show.pr?keyword=500 Error</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/show.pr?keyword=404 Error</location>
+    </error-page> 
+    <error-page>
+	    <error-code>503</error-code>
+        <location>/show.pr?keyword=503 Error</location>
+    </error-page>
+        <error-page>
+        <error-code>502</error-code>
+        <location>/show.pr?keyword=502 Error</location>
+    </error-page>
+    <!--Bad Request-->
+    <error-page>
+        <error-code>400</error-code>
+        <location>/show.pr?keyword=400 Error</location>
+    </error-page>
+    <!--Conflict-->
+    <error-page>
+        <error-code>409</error-code>
+        <location>/show.pr?keyword=409 Error</location>
+    </error-page>
+    
+    
+</web-app>
+

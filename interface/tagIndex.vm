@@ -1,0 +1,35 @@
+#parse("interface/includes/imports.vm")
+
+#set ($dtree=true)
+
+#parse("interface/includes/header.vm")
+
+<!-- 	CONTENT -->
+<div class="content content-font">
+	<div class="contentbox-full">
+		<h1 class="line-black-titles">$action.getText('priki.indexMenuItem')</h1> 
+
+		<UL>
+
+		 #foreach ($result in $tags)
+			
+		 	#if (${result.hasDefinition()})
+                   		<LI><a href="$basePath/wiki/${result.keyword}" rel="tag">${result.keyword}</a></LI>
+                 	#else
+                   		<LI>${result.keyword}</LI>
+                 	#end
+			<UL>
+			#foreach ($result2 in $result.related)
+			   #if ($result2.tags.contains($result))
+				 <LI><a href="$basePath/wiki/${result2.keyword}">${result2.keyword}</a></LI>
+			   #end	 
+			#end
+			</UL>
+		 #end
+
+		</UL>		
+		
+	</div>
+	</div>	
+	
+#parse("interface/includes/footer.vm")

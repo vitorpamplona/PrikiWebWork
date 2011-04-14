@@ -1,0 +1,13 @@
+#macro( pluginLeftSidebar $pluginsLeftMenu)
+
+#foreach ($plugin in $pluginsLeftMenu)
+<div class="left-sidebarbox-border bg-blue02">
+   	<div class="sidebarbox-title-shading bg-blue05">
+    		$plugin.getName()
+    </div>
+	$!plugin.getHtml()
+</div>
+#end
+
+#end				  		
+				  		

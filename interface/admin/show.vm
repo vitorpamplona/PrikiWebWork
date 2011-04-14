@@ -1,0 +1,265 @@
+#set($adminShow = true)
+#parse("interface/includes/imports.vm")
+#parse("interface/includes/header.vm")
+
+  		<!-- 	CONTENT -->
+		<div class="content content-font">
+		
+		<p align="center"><a href="$basePath/admin/edit.pr">$action.getText('priki.admin.update')</a> - <a href="$basePath/admin/snapshot.pr">$action.getText('priki.admin.snapshot')</a>  - <a href="$basePath/admin/fixWikiRefers.pr">$action.getText('priki.admin.fixWikiRefers')</a></p>
+		
+			<div class="contentbox-container">
+			    <div class="contentbox-half-left">
+	 			<div class="contentbox-title-shading-small bg-blue03 box-on">&nbsp;</div>
+				<div class="contentbox-title-shading-small">$action.getText('priki.admin.title')</div>
+				<div class="contentbox-noshading">
+
+				<p><b>$action.getText('priki.admin.siteName')</b>: $siteName<br>
+				<b>$action.getText('priki.admin.slogan')</b>: $slogan<br>
+				<b>$action.getText('priki.admin.basePath')</b>: $adminBasePath<br>
+				<b>$action.getText('priki.admin.defaultI18n')</b>: $action.getText("priki.admin.defaultI18n.$defaultI18n")<br>
+				</p>
+				</div>
+			    </div>	
+			
+			    <div class="contentbox-half-right">
+	 			<div class="contentbox-title-shading-small bg-blue03 box-on">&nbsp;</div>
+				<div class="contentbox-title-shading-small">$action.getText('priki.lastChangesMenuItem')</div>
+				<div class="contentbox-noshading">	
+				<p><b>$action.getText('priki.admin.lastChangesCount')</b>: $lastChangesCount <br>
+				<b>$action.getText('priki.admin.lastChangesInItems')</b>: $lastChangesInItems <br>
+				<b>$action.getText('priki.admin.lastChangesOnlyNewPages')</b>: $lastChangesOnlyNewPages <br>
+				<br>
+				</p>
+				</div>
+			    </div>
+			</div>						
+			
+			<div class="clear"></div>
+			
+			<div class="contentbox-container">
+			    <div class="contentbox-half-left">
+	 			<div class="contentbox-title-shading-small bg-blue03 box-on">&nbsp;</div>
+				<div class="contentbox-title-shading-small">$action.getText('priki.admin.security')</div>
+				<div class="contentbox-noshading">	
+				<p><b>$action.getText('priki.admin.readonly')</b>: $readonly <br>
+				<b>$action.getText('priki.admin.anonymousReaders')</b>: $acceptAnonymousReader<br>
+				<b>$action.getText('priki.admin.anonymousEditors')</b>: $acceptAnonymousEditor<br>
+				<b>$action.getText('priki.admin.signUpAs')</b>: 
+					#if ($signUpAs == 0) $action.getText('priki.admin.signUp.user')  #end
+					#if ($signUpAs == 1) $action.getText('priki.admin.signUp.reader') #end
+					#if ($signUpAs == 2) $action.getText('priki.admin.signUp.editor') #end<br> 												
+				<b>$action.getText('priki.admin.defaultVisibility')</b>: 
+					#if ($defaultVisibility == 0) $action.getText('priki.visibility.public')  #end
+					#if ($defaultVisibility == 2) $action.getText('priki.visibility.reader') #end
+					#if ($defaultVisibility == 3) $action.getText('priki.visibility.editor') #end 						
+					#if ($defaultVisibility == 4) $action.getText('priki.visibility.admin') #end<br> 						
+				<b>$action.getText('priki.admin.defaultCaseSensitive')</b>: $defaultCaseSensitive</p>
+				</div>				
+			    </div>	
+			    
+			    <div class="contentbox-half-right">
+	 			<div class="contentbox-title-shading-small bg-blue03 box-on">&nbsp;</div>
+				<div class="contentbox-title-shading-small">$action.getText('priki.admin.mailConfiguration')</div>
+				<div class="contentbox-noshading">	
+				   <p><b>$action.getText('priki.admin.mail.smtpHost')</b>: $!smtpHost<br>
+				   <b>$action.getText('priki.admin.mail.smtpPort')</b>: $!smtpPort<br>
+				   <b>$action.getText('priki.admin.mail.smtpUser')</b>: $!smtpUser<br>
+				   <b>$action.getText('priki.admin.mail.smtpPassword')</b>: #if ($smtpPassword) ******* #end <br>
+				   <b>$action.getText('priki.admin.mail.fromMail')</b>: $!fromMail<br>
+				   <b>$action.getText('priki.admin.mail.fromName')</b>: $!fromName<br>				   
+				   </p>					
+				</div>				
+			    </div>
+			</div>
+				
+			<div class="clear"></div>	
+				
+			<div class="contentbox-container">
+			    <div class="contentbox-half-left">
+	 			<div class="contentbox-title-shading-small bg-blue03 box-on">&nbsp;</div>
+				<div class="contentbox-title-shading-small">$action.getText('priki.admin.userManagement')</div>
+				<div class="contentbox-noshading">				
+				
+				<form id="edit" name="managerUser" method="manageUser" action="$basePath/admin/manageUser.pr">
+					<p>Manage User with login equals: <input class="inputText" type="text" name="user" value="$!user"/>
+					<input  class="inputSubmit" type="submit" name="GO" value="$action.getText('priki.goButton')">	</p>
+				</form>	
+				
+				</div>
+			    </div>
+
+			    <div class="contentbox-half-right">				
+	 			<div class="contentbox-title-shading-small bg-blue03 box-on">&nbsp;</div>
+				<div class="contentbox-title-shading-small">$action.getText('priki.admin.rollbackPosts')</div>
+				<div class="contentbox-noshading">				
+				
+				<form id="edit" name="rollback" method="rollback" action="$basePath/admin/rollback.pr">
+					<p>$action.getText('priki.admin.rollbackAllSince') <input class="inputText" type="text" name="rollbackDate" value="$!rollbackDate" />
+					<br>$action.getText('priki.admin.rollbackUserIp') <input class="inputText" type="text" name="userIP" value="$!userIP"/>
+					<input class="inputSubmit" type="submit" name="GO" value="$action.getText('priki.goButton')">	</p>
+				</form>	
+				
+				</div>
+			    </div>
+			</div>	
+			
+			<div class="clear"></div>	
+			
+			<div class="contentbox-container">
+			    <div class="contentbox-third-left">
+	 			<div class="contentbox-title-shading-small bg-blue03 box-on">&nbsp;</div>
+				<div class="contentbox-title-shading-small">$action.getText('priki.admin.errorPages')</div>
+				<div class="contentbox-noshading">				
+				
+				$action.getText('priki.admin.pleaseConfigYourErrorPages'):
+				<ul>
+					<li><a href="$basePath/wiki/400 Error">400 Error</a></li>
+					<li><a href="$basePath/wiki/404 Error">404 Error</a></li>
+					<li><a href="$basePath/wiki/409 Error">409 Error</a></li>
+					<li><a href="$basePath/wiki/500 Error">500 Error</a></li>
+					<li><a href="$basePath/wiki/502 Error">502 Error</a></li>
+					<li><a href="$basePath/wiki/503 Error">503 Error</a></li>
+				</ul>	
+				
+				</div>
+			    </div>
+
+				<div class="contentbox-third-middle">
+				<div class="contentbox-title-shading-small bg-blue03 box-on">&nbsp;</div>
+				<div class="contentbox-title-shading-small">$action.getText('priki.admin.I18Ns')</div>
+				<div class="contentbox-noshading">
+
+				<ul>
+				 	#foreach ($item in $i18ns)
+					<li><a href="$basePath/admin/showI18N.pr?i18nLanguage=${item.getLanguage()}&i18nKey=${item.getKey()}">${item.getKey()}</a>
+					  - <a href="$basePath/admin/removeI18N.pr?i18nLanguage=${item.getLanguage()}&i18nKey=$item.key">$action.getText('priki.remove')</a><br>
+					  ${item.getText()} </li>
+					#end
+				</ul>
+
+				<p><a href="$basePath/admin/showI18N.pr">$action.getText('priki.admin.newI18N')</a></p>
+
+				</div>
+			    </div>
+
+
+			    <div class="contentbox-third-right">	
+			    <div class="contentbox-title-shading-small bg-blue03 box-on">&nbsp;</div>
+				<div class="contentbox-title-shading-small">$action.getText('priki.admin.plugins')</div>
+				<div class="contentbox-noshading">	
+				
+				<table border=1 width=100%>
+				<tr>
+				<td colspan=3><center>
+						<ul>
+						#foreach ($plgn in $pluginsInsideHead)
+							<li><a href="$basePath/admin/showPlugin.pr?pluginName=${plgn.getName()}">${plgn.getName()}</a> - <a href="$basePath/admin/removePlugin.pr?pluginName=${plgn.getName()}">$action.getText('priki.remove')</a></li>
+				 		#end 
+				 		</ul>	
+				</center>
+				</td>
+				</tr>
+				<tr><td colspan=3><center><b>Page Header</b></center></td></tr>
+				<tr>
+					<td>
+						<ul>
+						    <li><b>$action.getText('priki.indexMenuItem')</b></li>
+						#foreach ($plgn in $pluginsLeftMenu)
+							<li><a href="$basePath/admin/showPlugin.pr?pluginName=${plgn.getName()}">${plgn.getName()}</a> - <a href="$basePath/admin/removePlugin.pr?pluginName=${plgn.getName()}">$action.getText('priki.remove')</a></li>
+				 		#end 
+				 		</ul>	
+						
+					</td>
+				    <td width=40%>
+				     	<ul>
+				    	#foreach ($plgn in $pluginsBeforeContent)
+							<li><a href="$basePath/admin/showPlugin.pr?pluginName=${plgn.getName()}">${plgn.getName()}</a> - <a href="$basePath/admin/removePlugin.pr?pluginName=${plgn.getName()}">$action.getText('priki.remove')</a></li>
+				 		#end
+				        <li><b>Content</b></li>
+				        #foreach ($plgn in $pluginsAfterContent)
+							<li><a href="$basePath/admin/showPlugin.pr?pluginName=${plgn.getName()}">${plgn.getName()}</a> - <a href="$basePath/admin/removePlugin.pr?pluginName=${plgn.getName()}">$action.getText('priki.remove')</a></li>
+				 		#end 
+				 		</ul>
+				    </td>
+					<td>
+						<ul>
+							<li><b>$action.getText('priki.tags')</b></li>
+						    <li><b>$action.getText('priki.relatedContent')</b></li> 
+						#foreach ($plgn in $pluginsRightMenu)
+							<li><a href="$basePath/admin/showPlugin.pr?pluginName=${plgn.getName()}">${plgn.getName()}</a> - <a href="$basePath/admin/removePlugin.pr?pluginName=${plgn.getName()}">$action.getText('priki.remove')</a></li>
+				 		#end 
+				 		</ul>	
+					
+					</td>
+				<tr>
+				<tr><td colspan=3>
+						<ul>
+				    	#foreach ($plgn in $pluginsBeforeComments)
+							<li><a href="$basePath/admin/showPlugin.pr?pluginName=${plgn.getName()}">${plgn.getName()}</a> - <a href="$basePath/admin/removePlugin.pr?pluginName=${plgn.getName()}">$action.getText('priki.remove')</a></li>
+				 		#end
+				        <li><b>Comments</b></li>
+				        #foreach ($plgn in $pluginsAfterComments)
+							<li><a href="$basePath/admin/showPlugin.pr?pluginName=${plgn.getName()}">${plgn.getName()}</a> - <a href="$basePath/admin/removePlugin.pr?pluginName=${plgn.getName()}">$action.getText('priki.remove')</a></li>
+				 		#end 
+				 		</ul>
+				</td></tr>
+				</table>	
+
+				<p><a href="$basePath/admin/showPlugin.pr">$action.getText('priki.admin.newPlugin')</a></p>
+				</div>			
+	 			</div>
+			</div>
+			
+ 			<div class="clear"></div>
+		
+			<!-- Text container -->
+			<div class="contentbox-container">
+				<div class="contentbox-third-left">
+					<div class="contentbox-title-shading-small bg-blue03 box-on">&nbsp;</div>
+					<div class="contentbox-title-shading-small">$action.getText('priki.admin.badUsers')</div>
+					<div class="contentbox-noshading">
+						<p>$action.getText('priki.admin.listOfBadUsers')</p>
+						<p>
+							#foreach($badUser in $badUsers) 
+								$badUser - <a href="$basePath/admin/goodUser.pr?userIP=$badUser">$action.getText('priki.admin.linkGoodUser')</a><br>
+							#end																				
+						</p>									
+					</div>
+				</div>
+	
+				<div class="contentbox-third-middle">
+					<div class="contentbox-title-shading-small bg-blue03 box-on">&nbsp;</div>
+					<div class="contentbox-title-shading-small">$action.getText('priki.admin.badLinks')</div>
+					<div class="contentbox-noshading">
+						<p>$action.getText('priki.admin.listOfBadLinks')</p>
+						<p>
+							#foreach($badLink in $badLinks)
+								<a href="$badLink" target="_blank">$badLink</a> - 
+									<a href="$basePath/admin/goodLink.pr?link=$badLink">$action.getText('priki.admin.linkGoodLink')</a><br>
+							#end																													
+						</p>						
+					</div>
+				</div>
+				
+				<div class="contentbox-third-right">
+					<div class="contentbox-title-shading-small bg-blue03 box-on">&nbsp;</div>
+					<div class="contentbox-title-shading-small">$action.getText('priki.admin.users')</div>
+					<div class="contentbox-noshading">
+						<p>$action.getText('priki.admin.listOfUsers')</p>
+						<table width="100%">						
+							#foreach($user in $users)
+								<tr><td><a href="$basePath/admin/manageUser.pr?user=$user.getKeyword()">$user.getKeyword()</a></td>
+									<td>${accessManager.getRole($user.getKeyword())}</td>
+									<td>#if (${user.isEscortWiki()}) Escorting #end</td>
+								</tr>
+							#end																													
+						</table>						
+					</div>
+				</div>				
+			</div>	
+
+		</div>
+		
+#parse("interface/includes/footer.vm")
+	
+	

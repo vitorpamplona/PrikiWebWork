@@ -1,0 +1,50 @@
+#parse("interface/includes/imports.vm")
+
+#set($loginPage = true)
+#parse("interface/includes/header.vm")
+
+
+<!-- 	CONTENT -->
+<div class="content content-font">
+	<div class="contentbox-full">
+		<h1 class="line-black-titles">$action.getText('priki.loginMenuItem')</h1> 
+			
+		<form name="formLogin" id="formLogin" method="post" action="$basePath/verifyLogin.pr">
+		 <table width="100%" border="0">
+		  <tr><td width=120>
+      			$action.getText('priki.login.userExtended') &nbsp;
+      		     </td><td>	
+      			<input class="inputText" type="text" name="user" id="user" />
+      		  </td></tr><tr><td>
+      			$action.getText('priki.userProfile.password') &nbsp;
+      		     </td><td>	
+      			<input class="inputPassword" type="password" name="password" id="password" />
+		  </td></tr><tr><td>
+			<input class="inputCheckbox" type="checkbox" name="useCookie" value="useCookie" #if (${useCookie.equals($action.getText('priki.yes'))}) checked #end />
+		     </td><td>
+      			$action.getText('priki.login.useCookieExtended')
+		  </td></tr><tr><td>  
+		        <br>    			
+      			<input class="inputSubmit" type="submit" value="$action.getText('priki.loginMenuItem')">
+		  </td></tr></table>      			
+       		</form>	
+       		<br><br>
+		<h1 class="line-black-titles">$action.getText('priki.forgotMyUser')</h1> 
+			
+		<p>$action.getText('priki.forgotMyUserText')</p>
+			
+		<form name="formLogin" id="formLogin" method="post" action="$basePath/forgotLogin.pr">
+		 <table width="100%" border="0">
+		  <tr><td width=80>
+      			$action.getText('priki.userProfile.email') &nbsp;
+      		     </td><td>	
+      			<input class="inputText" type="text" name="email" id="email" />
+		  </td></tr><tr><td>
+		  <br>      			
+      			<input class="inputSubmit" type="submit" value="$action.getText('priki.forgotMyUserRecoverButton')">
+		  </td></tr></table>      			
+       		</form>	       		
+	</div>
+</div>
+		
+#parse("interface/includes/footer.vm")

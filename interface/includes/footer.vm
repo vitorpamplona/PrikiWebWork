@@ -1,0 +1,11 @@
+    <!-- END WRAP CONTENT AND SIDEBAR -->
+	</div>		
+
+    <!-- FOOTER -->
+    <div class="footer footer-font">
+       <p>$action.getText('priki.footer.copyright')</p>
+       <p>$action.getText('priki.footer.poweredby')</p>
+    </div>
+  </div>
+</body>
+</html>

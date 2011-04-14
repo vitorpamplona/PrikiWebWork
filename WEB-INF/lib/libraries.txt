@@ -1,0 +1,12 @@
+commons-logging.jar - Apache Commons Logging version ???
+commons-lang.jar - Apache Commons Logging version 2.1
+log4j.jar - Apache Log4J - 1.2.8
+ognl.jar - Dependendy of WebWork version 2.1.7
+oscore.jar - Dependendy of WebWork version 2.1.7
+simplecaptcha.jar - Simple Captcha 25/09/2005 (Imagem anti-flood)
+urlrewrite - URLRewrite 2.6.0 (redirecionar /wiki/)
+velocity-dep.jar - Velocity (plus dependencies) version 1.3.1
+xwork.jar - XWork version 1.0.5
+webwork.jar - WebWork version 2.1.7
+
+

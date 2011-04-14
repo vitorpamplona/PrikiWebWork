@@ -1,0 +1,367 @@
+html {overflow: -moz-scrollbars-vertical;}
+body {font-size: 62.5%; margin: 0em auto; padding: 0px; font-family: arial, tahoma, verdana, sans-serif; background: url(../img/background2.gif) top center repeat-y;}
+.page-container {width: 1000px; margin: 0px auto; margin-bottom: 20px; padding: 0px; border-left: solid 1px rgb(150,150,150); border-right: solid 1px rgb(150,150,150); border-bottom: solid 1px rgb(150,150,150); background-color: rgb(255,255,255);}
+
+.nav-global-container {position: absolute; z-index: 3; width: 990px; top: 5px; background-color: transparent;}
+.nav-global {float: right; width: 100%; margin: 0px; padding: 0px; background-color: transparent;}	
+.nav-global ul {float: right; display: inline; list-style: none; margin: 0px; padding: 0px;}	
+.nav-global li {display: inline; white-space: nowrap; text-transform: none;}
+.nav-global li a {display: inline; margin: 0px; padding: 0px 4px 0px 4px; border-left: solid 1px rgb(100,100,100); color: rgb(100,100,100); text-decoration: none; font-size: 120%;}
+.nav-global a:hover {background-color: rgb(255,255,255); color: rgb(0,0,0); text-decoration: underline;}
+.img-flag {display: inline; vertical-align: text-bottom;  margin: 0px; padding: 0px; border: solid 1px rgb(0,0,0);}
+
+.site-name    {clear: both; float: left; position: absolute; z-index: 2; width: 700px; top: 20px; margin: 0px; padding-left: 17px; background-color: transparent; color: rgb(255,255,255); font-weight: bold; font-size: 30px;}
+.site-slogan  {float: left; position: absolute; z-index: 1; width: 700px; top: 1.9em; left: 15px; margin: 0px; padding: 0px 0px 0px 3px; background-color: transparent; color: rgb(204,216,228); font-weight: bold; font-size: 20px;}
+.img-header   {clear: both; float: left; width: 100%; height: 100px; margin: 0px; padding: 0px;}
+.search-frame {clear: both; float: right; position: absolute; z-index: 3; width: 250px; top: 50px; margin: 0px; padding-left: 830px; background-color: transparent; color: rgb(255,255,255); font-weight: bold; font-size: 13px;}
+
+.nav-main {clear: both; 
+	width: 100%;  
+	min-height: 2.0em; 
+	margin: 0px; 
+	padding: 0px 0px 0px 0px;
+	border-top: solid 1px rgb(84,111,144); 
+	border-bottom: solid 1px rgb(84,111,144); 
+	background-color: rgb(159,182,213);
+}
+ 
+.nav-main ul { list-style: none; margin: 0px; padding: 0px; font-weight: normal;}	
+.nav-main li { float: left; white-space: nowrap; background-color: inherit;}
+.nav-main li a {margin: 0px; padding: 0px 10px 0px 10px; border-right: solid 1px rgb(255,255,255); color: rgb(255,255,255); text-decoration: none; font-size: 120%;}
+
+.nav-main a, .nav-main a.selected {background-color: inherit; color: rgb(75,75,75); text-decoration: none;}
+.nav-main a:hover {background-color: inherit; color: rgb(255,255,255); text-decoration: none;}
+
+.buffer {float: none; width: 780px; height: 10px; margin: 0px; padding: 0px; background-color: rgb(255,255,255);}
+* html .nav-main {height: 2.0em;} /* IE6-Hack for min-height. Works also for IE7-Beta2 */ 
+
+.nav-main div {
+	line-height: 1.2em; 
+	float: right; 
+	margin: 3px 0px 3px 0px; 
+	padding: 0px 5px 0px 5px; 
+	font-weight: normal; 
+	border-right: solid 0px rgb(255,255,255); 
+	color: rgb(75,75,75); 
+	text-decoration: none; 
+	font-size: 120%;
+}
+
+.nav-main form {
+    float: right;
+	padding: 2px 10px 0px 10px;
+	margin:  0px 0px 0px 0px;
+	border: 0px; 
+	color: rgb(75,75,75); 
+	text-decoration: none; 
+	font-size: 120%;
+	font-weight: normal;
+	 display: block
+}
+
+.loginInput { 
+	color: rgb(75,75,75); 
+	font-family: arial, tahoma, verdana, sans-serif; 
+	font-weight: bold; 
+	background-color: transparent;
+	border-bottom: 0px;
+	border-top: 0px;
+	border-left: solid 1px rgb(255,255,255); 
+	border-right: solid 1px rgb(255,255,255); 
+	padding: 0px 4px 3px 4px; 
+	margin: 0px; // 2px 0px 2px;
+	width: 60px;
+	height: 12px; 
+	line-height: 14px; 
+}
+.loginCheckbox { 
+	color: rgb(75,75,75); 
+	font-family: arial, tahoma, verdana, sans-serif; 
+	font-weight: bold; 
+	background-color: transparent;
+	border: 0px;
+	padding: 0px 4px 2px 4px; 
+	margin: 0px 4px 0px 4px;
+	height: 12px;
+	line-height: 14px; 
+}
+
+.inputSearch { 
+	color: rgb(75,75,75); font-family: arial, tahoma, verdana, sans-serif; font-weight: bold; background-color: transparent; border: solid 1px rgb(255,255,255); margin: 0px; padding: 1px 4px 1px 4px; height: 1.4em; width: 100px; 
+}
+
+.buttonSearch{
+	font-family: arial, tahoma, verdana, sans-serif;
+	font-weight: bold; 
+	background-color:#CCCCCC;
+	border:solid 0px rgb(255,255,255);
+	padding:2px 2px;
+	margin:0px;
+	width: 40px; 
+}
+
+.sidebanner-frontpage {clear: both; float: left; width: 160px; margin: 0px; padding: 0px;}
+.img-sidebanner {width: 160px; margin: 0px; padding: 0px; border: none;}
+
+.nav-sub {clear: both;  width: 160px; min-height: 500px; float: left; margin: 0px; padding: 0px;}
+.nav-sub ul {float: left; list-style: none; width: 160px; margin: 0px; padding: 0px; border-bottom: solid 1px rgb(200,200,200);}	
+.nav-sub li {margin: 0px; padding: 0px;}
+.nav-sub li.title {vertical-align: top; margin: 0px; padding: 0px 5px 4px 20px; color: rgb(100,100,100); text-transform: uppercase; font-weight: bold; font-size: 140%;}
+.nav-sub li.group a {display: block; min-height: 1.5em; line-height: 1.5em; margin: 1px 0px 1px 0px; padding: 0px 7px 0px 10px; border-top: solid 1px rgb(200,200,200);  border-left: solid 10px rgb(201,198,234); color: rgb(100,100,100); font-weight: bold; font-size: 120%;}
+.nav-sub li a {display: block; min-height: 1.5em; line-height: 1.5em; margin: 1px 0px 1px 0px; padding: 0px 7px 0px 10px; border-left: solid 10px rgb(201,198,234); color: rgb(100,100,100); text-decoration: none; font-size: 120%;}
+.nav-sub li a:hover, .nav-sub li a.selected {border-left: solid 10px rgb(121,153,196); background-color: rgb(255,255,255); color: rgb(0,0,0); text-decoration: none;}
+
+* html .nav-sub {height: 500px;} /* IE6-hack for min-height. Also works for IE7-Beta2 */
+* html .nav-sub li.group a {height: 1.5em;} /* IE6-hack for min-height. Also works for IE7-Beta2 */	
+* html .nav-sub li a {height: 1.5em;} /* IE6-hack for min-height. Also works for IE7-Beta2 */
+
+.container-content-sidebar-front {width: 98%; min-height: 500px; margin: 0px; padding: 0px 0px 0px 1px; background-color: rgb(255,255,255);}
+.container-content-sidebar {width: 100%; min-height: 500px; margin: 0px; padding: 0px 0px 20px 0px; border-left: solid 1px rgb(200,200,200); background-color: rgb(255,255,255);}
+* html .container-content-sidebar-front {height: 500px;}/* IE6-hack for min-height. Also works for IE7-Beta2 */ 
+* html .container-content-sidebar {height: 500px;} /* IE6-hack for min-height. Also works for IE7-Beta2 */ 
+
+.left-menu {
+   float: left;
+   width: 200px;
+   background-color: rgb(255,255,255);
+   margin: 0px; 
+   padding: 0px; 
+   color: rgb(75,75,75);
+}
+
+.left-sidebarbox-border {
+	width: 183px; 
+	margin: 0px 0px 10px 0px; 
+	padding: 4px 4px 4px 4px; 
+	border: solid 1px rgb(200,200,200);
+}
+
+.content {
+	width: 98%; 
+	margin: 0px; 
+	padding: 0px 0px 0px 8px; 
+	background-color: transparent; 
+	color: rgb(75,75,75);
+} /* Width should be 444px, but IE-duplication bug forces us to reduce with 6px to 438px */
+
+.postedBy {
+    font-size: 85%;
+	text-align:right;
+}
+
+.contentbox-container { width: 100%; margin: 0px 0px 10px 0px; padding: 0px;} /* Width should be 438px, but IE-duplication bug forces us to reduce with 3px to 435px */
+.contentbox-full {width: 100%; margin: 0px; padding: 5px;}
+.contentbox-full-border {width: 100%; margin: 0px; padding: 0px; border: 1px solid #bbb; }
+.content-padding {width: 98%; margin: 0px; padding: 4px;  }
+.contentbox-half-left   {float: left; width: 49%; margin:  0px; padding: 0px;}
+.contentbox-half-right {float: right; width: 49%; margin: 0px; padding: 0px;}
+.contentbox-third-left {float: left; width: 32%; margin: 0px 10px 0px 0px; padding: 0px;}
+.contentbox-third-middle {float: left; width: 32%; margin: 0px 10px 0px 0px; padding: 0px;}
+.contentbox-third-right {float: right; width: 32%; margin: 0px; padding: 0px;}
+
+.content-pagetitle {width: 100%; margin: 0px 0px 10px 0px; padding: 0px 0px 5px 0px; background-color: transparent; border-bottom: solid 0px rgb(200,200,200); color: rgb(100,100,100); text-transform: uppercase; font-weight: bold; font-size: 140%;}
+
+.contentbox-title-noshading-small {margin: 0px 0px -5px 0px; padding: 0px; background-color: transparent;  color: rgb(75,75,75); font-weight: bold;}
+.contentbox-title-noshading-medium {margin: 0px 0px -5px 0px; padding: 0px; background-color: transparent; color: rgb(75,75,75); font-weight: bold;}
+.contentbox-title-noshading-large {margin: 0px 0px -5px 0px; padding: 0px; background-color: transparent; color: rgb(75,75,75); font-weight: bold; }
+.contentbox-title-noshading-huge {margin: 0px 0px -5px 0px; padding: 0px; background-color: transparent; color: rgb(75,75,75); font-weight: bold; }
+.contentbox-title-shading-small {margin: 0px; padding: 1px 0px 2px 3px; background-color: rgb(222,220,242); color: rgb(75,75,75); font-weight: bold; }
+.contentbox-title-shading-medium {margin: 0px; padding: 1px 0px 2px 3px; background-color: rgb(222,220,242); color: rgb(75,75,75); font-weight: bold; }
+.contentbox-title-shading-large {margin: 0px; padding: 1px 0px 2px 3px; background-color: rgb(222,220,242); color: rgb(75,75,75); font-weight: bold;}
+.contentbox-title-shading-huge {margin: 0px; padding: 1px 0px 2px 3px; background-color: rgb(222,220,242);color: rgb(75,75,75); font-weight: bold; }
+
+.contentbox-noshading {margin: 0px; padding: 0.7em 0px 0px 0px; background-color: transparent;  line-height: 1.6em; font-size:1.1em; }
+.contentbox-shading {margin: 0px; padding: 7px 10px 5px 10px; background-color: rgb(233,232,244);}
+
+/*---------------------*/
+/* Section 6C.4 - Text */
+/*---------------------*/
+/* Heading */
+h1 {margin: 1.0em 0px 0.5em 0px; font-weight: bold; font-size: 150%; border-bottom: solid 2px rgb(204,204,204); padding: 0px 0px 2px 0px; margin: 0px 0px 5px 0px;}
+
+.h1-last-changes {border: solid 0px rgb(0,0,0); padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;}
+
+h2 {clear: left; margin: 1.0em 0px 0.5em 0px; font-weight: bold; font-size: 130%; border-bottom: solid 2px rgb(204,204,204); padding: 0px 0px 2px 0px; margin: 0px 0px 5px 0px;}
+h3 {clear: left; margin: 1.0em 0px 0.5em 0px; font-weight: bold; font-size: 120%; border-bottom: solid 2px rgb(204,204,204); padding: 0px 0px 2px 0px; margin: 0px 0px 5px 0px;}
+h4 {clear: left; margin: 1.0em 0px 0.5em 0px; font-weight: bold; font-size: 110%;}
+h5 {clear: left; margin: 0px; font-weight: bold; font-size: 130%;}
+h6 {clear: left; margin: 0px;	font-weight: bold; font-style: italic; font-size: 130%;}
+
+/* Paragraph */
+.paragrahForm {margin: 2px 2px 2px 2px; padding: 0px; }
+p {margin: 0px 0px 1.0em 0px; padding: 0px; }
+p.readmore {margin: -0.2em 0px 0.5em 0px; padding: 0px; line-height: 1.2em; font-size: 110%; }
+p.quote {margin: 0em 30px 0.6em 30px;	line-height: 120%; font-size: 120%;}
+
+pre {line-height: 1.2em; font-size: 120%; border: 1px solid #bbb;} 
+.minor-size {margin: 0.4em 0px 0px 0px; line-height: 120%;}
+td {margin: 0px 0px 1.0em 0px; padding: 0px; }
+
+/* Lists */
+.content ul.noindent, .content2 ul.noindent {margin: 0px 0px 0px 15px; padding: 0px; list-style-type: disc; list-style-position: outside; line-height: 1.4em;}
+.content ul.indent, .content2 ul.indent, ul {margin: 0px 0px 15px 15px; padding: 0px 0px 0px 15px; list-style-type: disc;  line-height: 1.4em;}
+
+.left-menu ul {margin: 0px 0px 0px 15px; padding: 0px 0px 0px 4px; list-style-type: disc;  line-height: 1.4em;}
+.sidebar ul {margin: 0px 0px 0px 15px; padding: 0px 0px 0px 4px; list-style-type: disc;  line-height: 1.4em;}
+
+.content ol, .content2 ol {margin: 0px 0px 15px 15px; padding: 0px 0px 0px 25px; list-style-type: decimal; list-style-position: outside;  line-height: 1.4em;}
+
+/* Link List */
+.content ul.linklist-noindent, .content2 ul.linklist-noindent {margin: 0em 0px 0.5em 0px; padding: 0px; list-style-type: none; line-height: 1.2em; font-size: 120%; }
+.content ul.linklist-indent, .content2 ul.linklist-indent {margin: 0em 0px 0.5em 0px; padding: 0px 0px 0px 10px; list-style-type: none; line-height: 1.2em; font-size: 120%; }
+
+.table {clear: left; margin: 0.5em 0px 0.2em 30px; border: solid 1px rgb(150,150,150); empty-cells: show; border-collapse: collapse; background-color: rgb(233,232,244);}
+.table tr {margin: 0px; padding: 0px;}
+.table td {padding: 2px 7px 2px 7px; border: solid 1px rgb(150,150,150); text-align: left; }
+.table th {margin: 0px; padding: 2px 7px 2px 7px; border: solid 1px rgb(150,150,150); empty-cells: show; text-align: left;	}
+
+
+p.table-caption {margin: 0.5em 0px 1.0em 30px; padding: 0px; clear: both; text-align: left;}
+
+.sidebar {float: right; width: 180px; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px; background-color: rgb(255,255,255); text-align: left;  color: rgb(75,75,75);} /* Actual width should be: 175px, but because of IE-bug we reduce with 6px so that container has some free space) */
+
+.sidebarbox-noborder {width: 180px; margin: 0px 0px 1.0em 9px; padding: 0px;}
+.sidebarbox-border {
+    width: 170px; 
+    margin: 0px 0px 1.0em 9px; 
+    padding: 4px 4px 4px 4px; 
+    border: solid 1px rgb(200,200,200);
+    max-width: 170px;
+}
+.scrool {
+	overflow: auto;
+}
+
+.sidebarbox-title-noshading {display: block; margin: 0px 0px 2px 0px; padding: 0px; background-color: transparent; font-weight: bold; }
+.sidebarbox-title-shading {display: block; margin: 0px 0px 5px 0px; padding: 2px 5px 3px 5px; background-color: rgb(225,225,225); font-weight: bold; }
+
+.footer {clear: both; width: 100%; height: 3.0em; margin: 0px; padding: 0.5em 0px 0.5em 0px; border-top: solid 1px rgb(150,150,150); background-color: rgb(159,182,213); color: rgb(255,255,255);}
+.footer p {margin: 0px; padding: 0px; text-align: center; line-height: 1.3em; font-size: 110%;}
+
+.content a, .content2 a, .sidebar a {text-decoration: none;}
+.contentbox-noshading a {text-decoration: none; }
+.content a:hover, .content2 a:hover, .sidebar a:hover {text-decoration: underline;}
+.contentbox-noshading a:hover {text-decoration: underline; }
+
+.footer a {color: rgb(255,255,255); text-decoration: underline;}
+.footer a:hover {color: rgb(0,0,0); text-decoration: none;}
+
+.nav-global-font {font-size: 1.0em;}
+.nav-main-font {font-size: 1.0em;}
+.nav-sub-font {font-size: 1.0em;}
+.content-font {	font-size: 130%;}
+.sidebar-font {font-size: 1.0em;}
+.footer-font {font-size: 1.0em;}
+
+.box-on {float: left; min-width: 0.5em; margin-right: 0.2em; padding-left: 0.3em;}
+.box-off {display: none;}
+
+.txt-white {color: rgb(255,255,255);}
+.txt-black {color: rgb(0,0,0);}
+
+/*----------------------------------*/
+/* Section 10.5 - Background colors */
+/*----------------------------------*/
+.bg-white {background-color: rgb(255,255,255);}
+.bg-black {background-color: rgb(0,0,0);}
+
+.bg-blue01 {background-color: rgb(238,237,249);}
+.bg-blue02 {background-color: rgb(222,220,242);}
+.bg-blue03 {background-color: rgb(205,202,236);}
+.bg-blue04 {background-color: rgb(189,185,229);}
+.bg-blue05 {background-color: rgb(172,167,223);}
+.bg-blue06 {background-color: rgb(155,149,217);}
+.bg-blue07 {background-color: rgb(139,132,210);}
+.bg-blue08 {background-color: rgb(122,114,204);}
+.bg-blue09 {background-color: rgb(106,97,197);}
+.bg-blue10 {background-color: rgb(89,79,191);}
+
+.bg-green01 {background-color: rgb(237,246,229);}
+.bg-green02 {background-color: rgb(220,238,204);}
+.bg-green03 {background-color: rgb(202,229,178);}
+.bg-green04 {background-color: rgb(185,220,153);}
+.bg-green05 {background-color: rgb(167,211,127);}
+.bg-green06 {background-color: rgb(149,203,102);}
+.bg-green07 {background-color: rgb(132,194,76);}
+.bg-green08 {background-color: rgb(114,185,51);}
+.bg-green09 {background-color: rgb(97,177,25);}
+.bg-green10 {background-color: rgb(79,168,0);}
+
+.bg-red01 {background-color: rgb(252,235,233);}
+.bg-red02 {background-color: rgb(248,216,211);}
+.bg-red03 {background-color: rgb(245,196,188);}
+.bg-red04 {background-color: rgb(242,177,166);}
+.bg-red05 {background-color: rgb(238,157,144);}
+.bg-red06 {background-color: rgb(235,137,122);}
+.bg-red07 {background-color: rgb(232,118,100);}
+.bg-red08 {background-color: rgb(229,98,77);}
+.bg-red09 {background-color: rgb(225,79,55);}
+.bg-red10 {background-color: rgb(222,59,33);}
+
+/*------------------------------------*/
+/* Section 10.6  Bottom border colors */
+/*------------------------------------*/
+.line-white {border-bottom: solid 2px rgb(255,255,255); padding: 0px 0px 2px 0px; margin: 0px 0px 1px 0px;}
+.line-black {border-bottom: solid 2px rgb(0,0,0); padding: 0px 0px 2px 0px; margin: 0px 0px 0px 0px;}
+.line-black-titles {border-bottom: solid 2px rgb(0,0,0); padding: 0px 0px 2px 0px; margin: 0px 0px 20px 0px;}
+.line-black-afterText {border-bottom: solid 2px rgb(0,0,0); padding: 0px 0px 2px 0px; margin: 0px 0px 10px 0px;}
+
+/******************************/
+/* SECTION 11 - MISCELLANEOUS */
+/******************************/
+.showcode { font-family: monospace; font-weight: bold; font-size: 13px; color: rgb(255,0,0);}
+.clear {clear: both;}
+.hide {display: none;}
+br {clear: none;}
+
+.inputText{
+	border:solid black 1px;
+	margin-bottom:0px;
+	margin-top:2px;
+	}
+.inputButton {
+	background-color:#CCCCCC;
+	border-style:solid;
+    border-width:0px;
+	padding:2px 10px;
+  }
+.inputSubmit {
+	background-color:#CCCCCC;
+	border-style:solid;
+    border-width:0px;
+	padding:2px 10px;;
+	margin-bottom:0px;
+	margin-top:0px;
+  }
+.inputReset {
+	background-color:#CCCCCC;
+	border-style:solid;
+    border-width:0px;
+	padding:2px 10px;;
+  }
+.inputPassword{
+	border:solid black 1px;
+	margin-bottom:0px;
+	margin-top:2px;
+}
+.inputCheckbox{
+	margin-bottom:0px;
+	margin-left:0px;
+	margin-right:4px;	
+	margin-top:2px;
+}
+.inputRadio{
+	margin-bottom:0px;
+	margin-left:0px;
+	margin-right:4px;	
+	margin-top:4px;
+}
+textarea{
+	border:solid black 1px;
+	margin-bottom:5px;
+}
+
+#quad {	
+	border: 1px solid #bbb; 
+	padding: 2px 4px 4px 4px; 
+}

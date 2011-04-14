@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE rss [<!ENTITY % HTMLlat1 PUBLIC "-//W3C//ENTITIES Latin 1 for XHTML//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml-lat1.ent">]>
+
+${res.setContentType("text/xml")}
+
+#parse("interface/includes/imports.vm")
+#bean("org.priki.service.DateUtil" $dateUtil) 
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+
+#foreach ($result in $tags)		
+#foreach ($result2 in $result.related)
+#if($result2.getDefinition().getPostDate())
+  <url>
+    #set($link = "$path/show.pr?keyword=${result2.keyword.replaceAll(' ', '+')}")
+    <loc>${action.getURL($link)}</loc>
+    <lastmod>${dateUtil.dateFormat($result2.getDefinition().getPostDate(), "yyyy-MM-dd")}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url> 
+#end
+#end
+#end
+
+</urlset>

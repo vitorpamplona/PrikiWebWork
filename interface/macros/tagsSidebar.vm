@@ -1,0 +1,14 @@
+#macro( showTagsSidebar $tags )
+#if ( $tags.size() > 0)
+<div class="sidebarbox-border bg-green02">
+    <div class="sidebarbox-title-shading bg-green05">
+   		$action.getText('priki.tags')
+    </div>
+    <UL>
+    #foreach ($result in $tags)
+        <li><a href="$basePath/wiki/${result.keyword}">$result.keyword</a></li>
+    #end
+    </UL>
+</div>
+#end
+#end

@@ -1,0 +1,121 @@
+#set ($dtree=true)
+#parse("interface/includes/imports.vm")
+#parse("interface/includes/header.vm")
+
+<div class="content content-font">
+		
+	#if (!${accessManager.isCanRead($keyword)})  
+		
+		#parse("interface/includes/readerPermissionMessage.vm")
+		
+	#else				
+
+		<div class="contentbox-full">	
+			
+			<div class="left-menu">	
+			## Show INDEX when are in the front page.
+			#if (${keyword.equals($action.getText('priki.frontPageMenuItem'))})
+			#if (${globalTags.size()} > 0)
+			        #showTagIndexSidebar($globalTags)
+			#end
+			#end	
+			
+			#pluginLeftSidebar($pluginsLeftMenu)
+			</div>
+				
+			## Message: VISIBILITY AND RELATED
+			<!-- SIDEBAR -->		
+	  		<div class="sidebar sidebar-font">
+	  			#parse("interface/includes/readonlyMessage.vm")	
+	  		
+				## VISIBILITY Only for Admins
+				#showVisibilitySidebar($keyword)	
+	
+				## TAGS
+				#showTagsSidebar($tags)
+
+				## RELATED
+				#showRelatedSidebar($related)
+				
+				## Escorting Users Only for Admins
+				#showEscortingUsers($keyword $escortingUsers)				
+				
+				#pluginRightSidebar($pluginsRightMenu)
+			</div>
+
+			<h1 class="line-black">#if ($historyId) History of #end $keyword</h1> 
+
+			#if ($definitionWithLinks)
+			        ## Message: Page Menu ITEMS
+				<div class="postedBy">
+					$action.getText('priki.postedIn', [${basePath}]) - 
+						
+					#if (!$readonlyWiki)
+						#if ($historyId)
+							<a href="$basePath/edit.pr?keyword=$keyword&historyId=$historyId">$action.getText('priki.editHistory')</a> - 
+						#else
+						  	<a href="$basePath/edit.pr?keyword=$keyword">$action.getText('priki.edit')</a> - 
+						#end
+					#end
+
+					<a href="$basePath/history.pr?keyword=$keyword">$action.getText('priki.history')</a>
+					#if ($logged)
+					  	#if ($escorting)
+					      		- <a href="$basePath/unescort.pr?keyword=$keyword">$action.getText('priki.unescort')</a>
+					  	#else
+					      		- <a href="$basePath/escort.pr?keyword=$keyword">$action.getText('priki.escort')</a>
+					  	#end        
+					#end
+
+				</div>
+
+				#pluginFull($pluginsBeforeContent)
+
+				## Message: TEXT
+				<div class="contentbox-noshading">
+					$definitionWithLinks
+					
+                    #if ( $related.size() > 0)
+                      <p>$action.getText('priki.talkingAboutThisPage', [${keyword}])</p>
+                      <ul>
+                      #foreach ($result in $related)
+                        <li><a href="$basePath/wiki/$result">$result</a></li>
+                      #end
+                      </ul>
+                    #end					
+				</div>
+				
+				#pluginFull($pluginsAfterContent)		
+			#else
+				## Message: NEW PAGE
+				<div class="contentbox-noshading">
+					<p>$action.getText('priki.withoutDefinition')</p>
+					#if (!$readonlyWiki)
+						<p>$action.getText('priki.clickToEdit', [${basePath}])</p>
+					#end
+					
+					#if ( $related.size() > 0)
+					<p>$action.getText('priki.talkingAboutThisPage', [${keyword}])</p>
+					<ul>
+					#foreach ($result in $related)
+						<li><a href="$basePath/wiki/$result">$result</a></li>
+					#end
+					</ul>
+					#end
+					
+					
+				</div>
+			#end
+		</div>
+				
+		#pluginFull($pluginsBeforeComments)
+	
+		#if ($definitionWithLinks)
+			#showCommentsAndForm($comments)
+		#end
+		
+		#pluginFull($pluginsAfterComments)
+	#end			
+</div>
+		
+#parse("interface/includes/footer.vm")

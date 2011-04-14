@@ -1,0 +1,14 @@
+#macro( showTagIndexSidebar $globalTags )
+
+    <div class="left-sidebarbox-border bg-blue02">
+    	<div class="sidebarbox-title-shading bg-blue05">
+    	     $action.getText('priki.indexMenuItem')
+    	</div>
+	    <UL>
+			#foreach ($result in $globalTags)
+				<li><a href="$basePath/wiki/${result.keyword}">$result.keyword</a></li>
+			#end
+		</UL>
+	</div>
+
+#end

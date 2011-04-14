@@ -1,0 +1,11 @@
+## Message: READONLY WIKI
+#if ($readonlyWiki)
+<div class="sidebarbox-border bg-red03">
+    <div class="sidebarbox-title-shading bg-red06">
+		$action.getText('priki.readonlyTitle')
+	</div>	
+	
+	$action.getText('priki.readonlyMessage')
+</div>							
+#end
+

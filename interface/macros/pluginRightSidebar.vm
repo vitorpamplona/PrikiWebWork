@@ -1,0 +1,13 @@
+#macro( pluginRightSidebar $pluginsRightMenu)
+
+#foreach ($plugin in $pluginsRightMenu)
+<div class="sidebarbox-border bg-green02">
+    <div class="sidebarbox-title-shading bg-green05">
+    		$plugin.getName()
+    </div>
+	$!plugin.getHtml()
+</div>
+#end
+
+#end				  		
+				  		

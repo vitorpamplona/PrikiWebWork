@@ -1,0 +1,24 @@
+#parse("interface/includes/imports.vm")
+#parse("interface/includes/header.vm")
+
+  		<!-- 	CONTENT -->
+		<div class="content content-font">
+			<div class="contentbox-full">
+					<h1 class="line-black-titles">$action.getText('priki.historyOf')</h1> 
+				
+					$action.getText('priki.historyOf.text')
+				
+	#if (${history.size()} == 0) 
+		$action.getText('priki.historyOf.hanst') 
+	#else
+		<ul>		
+		#foreach($id in ${history.keySet()})
+			<li>$action.getText('priki.historyOf.postedIn',[$basePath, ${df.format(${history.get($id).getPostDate()})}, ${history.get($id).getWhoPosted().getName()}, $id])</li>
+		#end
+		</ul>		
+	#end	
+	
+			</div>
+		</div>
+		
+#parse("interface/includes/footer.vm")

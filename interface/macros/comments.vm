@@ -1,0 +1,46 @@
+#macro( showCommentsAndForm $comments )
+<div class="contentbox-full">
+       ## Message: COMMENTS	
+	<h1 class="line-black">$action.getText('priki.comments')</h1> 
+			
+	#set ($index = 0)
+	#foreach ($comm in $comments)
+		<br>
+		<div class="contentbox-full-border">
+			<div class="content-padding">
+				<div class="contentbox-noshading">
+					${formatter.format($comm).replaceAll("&amp; ", "&").replaceAll("&amp;", "&")}
+				</div>
+						
+				<div class="postedBy">
+					$action.getText('priki.comment.postedIn', [${df.format($comm.postDate)} , ${comm.whoPosted}, ${comm.whoPosted.getName()}, ${basePath}])
+					#if ($userAdmin) - <a href="$basePath/admin/removeComment.pr?keyword=$keyword&commentIndex=$index">$action.getText('priki.remove')</a> #end
+				</div>
+			</div>	
+		</div>	
+		
+		#set ($index = $index +1)
+	#end
+	
+</div>				
+
+<div class="contentbox-full">
+	## Message: COMMENT FORM
+	<div id="divComment2">
+		<a href="javascript:toggleVisibility('divComment');toggleVisibility('divComment2');">$action.getText('priki.comment')</a>
+	</div>
+	
+	<div id="divComment" style="display: none;" >
+		<form id="edit" name="edit" method="post" action="$basePath/postComment.pr">
+			<input type="hidden" name="keyword" value="$keyword" />
+			<textarea style="width:80%" name="commentOnlyText" id="commentOnlyText" rows=10>$!{commentOnlyText}</textarea>
+			#if (!$logged)
+				<p>$action.getText('priki.comment.user') <input type="text" name="postUserName" value="" /></p>
+			#end
+			#parse("interface/includes/flood.vm")
+			<input type="submit" name="Save" value="$action.getText('priki.saveButton')">	
+			<br>
+		</form>	
+	</div>
+</div>	
+#end

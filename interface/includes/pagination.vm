@@ -1,0 +1,64 @@
+#set ($firstPage = 0)
+#set ($prevPage = $page - 1)
+#set ($nextPage = $page + 1)
+
+#if ($lastPage > 0)
+
+<div style="margin: 0px 0px 0px 0px; " align="center">
+
+#if ($page <= $firstPage)
+   $action.getText('priki.first')
+#else
+   <a href="$basePath/lastChanges.pr?page=${firstPage}">$action.getText('priki.first')</a>
+#end
+		
+&nbsp;		
+				
+#if ($prevPage < $firstPage)
+   $action.getText('priki.previous')
+#else
+   <a href="$basePath/lastChanges.pr?page=${prevPage}">$action.getText('priki.previous')</a>
+#end
+
+&nbsp;
+
+#foreach( $foo in [3..1] )
+	#set ($fooPage = $page - $foo)
+	#if ($fooPage >= 0)  
+		#set ($fooPageShow = $fooPage + 1)
+		<a href="$basePath/lastChanges.pr?page=${fooPage}">$fooPageShow</a>
+		&nbsp;
+	#end
+#end
+
+#set ($thisPage = $page + 1)
+$thisPage
+
+&nbsp;
+
+#foreach( $foo in [1..3] )
+	#set ($fooPage = $page + $foo)
+	#if ($fooPage <= $lastPage)  
+		#set ($fooPageShow = $fooPage + 1)
+		<a href="$basePath/lastChanges.pr?page=${fooPage}">$fooPageShow</a>
+		&nbsp;
+	#end
+#end
+
+#if ($nextPage > $lastPage)
+  $action.getText('priki.next')
+#else
+  <a href="$basePath/lastChanges.pr?page=${nextPage}">$action.getText('priki.next')</a>
+#end
+
+&nbsp;
+
+#if ($page >= $lastPage)
+  $action.getText('priki.last')
+#else
+  <a href="$basePath/lastChanges.pr?page=${lastPage}">$action.getText('priki.last')</a>
+#end
+
+</div>
+
+#end

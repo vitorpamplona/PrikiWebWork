@@ -1,0 +1,58 @@
+#parse("interface/includes/imports.vm")
+#parse("interface/includes/header.vm")
+
+  		<!-- 	CONTENT -->
+		<div class="content content-font">
+			<div class="contentbox-full">
+	 			<div class="contentbox-title-shading-small bg-blue03 box-on">&nbsp;</div>
+				<div class="contentbox-title-shading-small">$action.getText('priki.admin.editingPlugin', [{$pluginName}])</div>
+				<div class="contentbox-noshading">
+
+				<form id="edit" name="edit" method="post" action="$basePath/admin/updatePlugin.pr">
+
+				
+			    <table  border="0">
+			    <tr>
+			      <td><b>$action.getText('priki.admin.plugin.name')</b></td>
+			      <td><input class="inputText" type="text" name="pluginNewName" id="pluginNewName" value="$!pluginNewName"></td>
+			    </tr>
+			    <tr>
+			      <td><b>$action.getText('priki.admin.plugin.position')</b></td>
+			      <td>
+			      
+			            <select name="pluginPosition" id="pluginPosition">
+               				<option VALUE=1 #if ($pluginPosition == 1) selected #end>$action.getText('priki.admin.plugin.position.LeftMenu')</option>
+               				<option VALUE=2 #if ($pluginPosition == 2) selected #end>$action.getText('priki.admin.plugin.position.RightMenu')</option>
+               				<option VALUE=3 #if ($pluginPosition == 3) selected #end>$action.getText('priki.admin.plugin.position.BeforeContent')</option>
+               				<option VALUE=4 #if ($pluginPosition == 4) selected #end>$action.getText('priki.admin.plugin.position.AfterContent')</option>
+               				<option VALUE=5 #if ($pluginPosition == 5) selected #end>$action.getText('priki.admin.plugin.position.BeforeComments')</option>
+               				<option VALUE=6 #if ($pluginPosition == 6) selected #end>$action.getText('priki.admin.plugin.position.AfterComments')</option>
+               				<option VALUE=7 #if ($pluginPosition == 7) selected #end>$action.getText('priki.admin.plugin.position.InsideHead')</option>
+          				</select>
+			    </tr>
+			    <tr>
+			      <td><b>$action.getText('priki.admin.plugin.order')</b></td>
+			      <td><input class="inputText" type="text" name="pluginOrder" id="pluginOrder" value="$pluginOrder"></td>
+			    </tr>			    
+			    <tr>
+			      <td><b>$action.getText('priki.admin.plugin.html')</b></td>
+			      <td>
+			      <textarea rows=20 cols=100 name="pluginHTML" id="pluginHTML" >$!{pluginHTML} </textarea></td>
+			    </tr>			  			
+				
+
+				</table>	
+				</p>
+				
+				<input type="hidden" name="pluginName" value="$pluginName" />
+				
+				<input class="inputSubmit" type="submit" name="Save" value="$action.getText('priki.saveButton')">	
+
+				</form>				
+				</div>
+			</div>					
+		</div>
+		
+#parse("interface/includes/footer.vm")
+	
+	

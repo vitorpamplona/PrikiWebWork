@@ -1,0 +1,12 @@
+#parse("interface/includes/imports.vm")
+#parse("interface/includes/header.vm")
+
+  		<!-- 	CONTENT -->
+		<div class="content content-font">
+			<div class="contentbox-full">
+				<h1 class="line-black-titles">$action.getText('priki.errorTitle')</h1> 
+				<p><b>$errorMessage</b> </p>
+			</div>
+		</div>
+		
+#parse("interface/includes/footer.vm")

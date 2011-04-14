@@ -1,0 +1,112 @@
+#parse("interface/includes/imports.vm")
+#parse("interface/includes/header.vm")
+
+<!-- 	CONTENT -->
+<div class="content content-font">
+
+	<form id="edit" name="edit" method="post" action="$basePath/admin/post.pr">
+		<div class="contentbox-full">
+ 		<div class="contentbox-title-shading-small bg-blue03 box-on">&nbsp;</div>
+		<div class="contentbox-title-shading-small">$action.getText('priki.admin.title')</div>
+		<div class="contentbox-noshading">
+
+		<table width=100%>
+			<tr><td width=40%><p class="paragrahForm"><b>$action.getText('priki.admin.siteName') </b> 
+		    	    	</td><td> <input class="inputText" type="text" name="siteName" value="$siteName" /></p></td></tr>
+			<tr><td><p class="paragrahForm"><b>$action.getText('priki.admin.slogan') </b> 
+			    	</td><td> <input class="inputText" type="text" name="slogan" value="$slogan" /></p></td></tr>
+			<tr><td><p class="paragrahForm"><b>$action.getText('priki.admin.basePath') </b> 
+				</td><td> <input class="inputText" type="text" size=30 name="adminBasePath" value="$adminBasePath" /></p></td></tr>
+   			<tr><td><p class="paragrahForm"><b>$action.getText('priki.admin.defaultI18n') </b> 
+   				</td><td> <select size="1" name="defaultI18n">
+						<option #if ($defaultI18n=="en_US") selected #end value="en_US">$action.getText('priki.admin.defaultI18n.en_US')</option>
+						<option #if ($defaultI18n=="pt_BR") selected #end value="pt_BR">$action.getText('priki.admin.defaultI18n.pt_BR')</option>
+						</select><br></td></tr>				
+		</table>				
+			
+		</div>
+		</div>		
+		
+		<div class="contentbox-full">		
+	 	<div class="contentbox-title-shading-small bg-blue03 box-on">&nbsp;</div>
+		<div class="contentbox-title-shading-small">$action.getText('priki.lastChangesMenuItem')</div>
+		<div class="contentbox-noshading">	
+	
+		<table width=100%>				
+			<tr><td width=40%><p class="paragrahForm"><b>$action.getText('priki.admin.lastChangesCount') </b> 
+				</td><td> <input class="inputText" type="text" name="lastChangesCount" value="$lastChangesCount" /></p></td></tr>
+			<tr><td><p class="paragrahForm"><b>$action.getText('priki.admin.lastChangesInItems') </b> 
+				</td><td> <input class="inputCheckbox" type="checkbox" name="lastChangesInItems" value="lastChangesInItems"    		#if (${lastChangesInItems.equals($action.getText('priki.yes'))}) checked #end />  </p></td></tr>
+			<tr><td><p class="paragrahForm"><b>$action.getText('priki.admin.lastChangesOnlyNewPages') </b> 
+				</td><td><input class="inputCheckbox" type="checkbox" name="lastChangesOnlyNewPages" value="lastChangesOnlyNewPages"  	#if (${lastChangesOnlyNewPages.equals($action.getText('priki.yes'))}) checked #end />  </p></td></tr>				
+		</table>
+								
+		</div>
+		</div>								
+		
+		<div class="contentbox-full">
+	 	<div class="contentbox-title-shading-small bg-blue03 box-on">&nbsp;</div>
+		<div class="contentbox-title-shading-small">$action.getText('priki.admin.security')</div>
+		<div class="contentbox-noshading">
+		
+		<table width=100%>								
+	     		<tr><td width=40%><p class="paragrahForm"><b>$action.getText('priki.admin.readonly') </b> 
+     				</td><td> <input class="inputCheckbox" type="checkbox" name="readonly" value="readonly"                                  		#if (${readonly.equals($action.getText('priki.yes'))}) checked #end />      </p></td></tr>
+	     		<tr><td><p class="paragrahForm"><b>$action.getText('priki.admin.anonymousReaders') </b>
+	     			</td><td> <input class="inputCheckbox" type="checkbox" name="acceptAnonymousReader" value="acceptAnonymousReader" 		#if (${acceptAnonymousReader.equals($action.getText('priki.yes'))}) checked #end /> </p></td></tr>
+     			<tr><td><p class="paragrahForm"><b>$action.getText('priki.admin.anonymousEditors') </b>
+     				</td><td> <input class="inputCheckbox" type="checkbox" name="acceptAnonymousEditor" value="acceptAnonymousEditor" 		#if (${acceptAnonymousEditor.equals($action.getText('priki.yes'))}) checked #end /> </p></td></tr>   	
+	     		<tr><td><p class="paragrahForm"><b>$action.getText('priki.admin.defaultCaseSensitive') </b> 
+     				</td><td> <input class="inputCheckbox" type="checkbox" name="defaultCaseSensitive" value="defaultCaseSensitive"       		#if (${defaultCaseSensitive.equals($action.getText('priki.yes'))}) checked #end />  </p></td></tr>
+
+     			<tr><td><p class="paragrahForm">
+     				<b>$action.getText('priki.admin.defaultVisibility')  </b></td><td> 
+				<input class="inputRadio" type="radio" name="defaultVisibility" value="0" #if ($defaultVisibility == 0) checked #end>$action.getText('priki.visibility.public')
+				<input class="inputRadio" type="radio" name="defaultVisibility" value="2" #if ($defaultVisibility == 2) checked #end>$action.getText('priki.visibility.reader')
+				<input class="inputRadio" type="radio" name="defaultVisibility" value="3" #if ($defaultVisibility == 3) checked #end>$action.getText('priki.visibility.editor')
+				<input class="inputRadio" type="radio" name="defaultVisibility" value="4" #if ($defaultVisibility == 4) checked #end>$action.getText('priki.visibility.admin')
+
+     			<tr><td><p class="paragrahForm">
+     				<b>$action.getText('priki.admin.signUpAs')</b></td><td> 
+				<input class="inputRadio" type="radio" name="signUpAs" value="0" #if ($signUpAs == 0) checked #end>$action.getText('priki.admin.signUp.user')
+				<input class="inputRadio" type="radio" name="signUpAs" value="1" #if ($signUpAs == 1) checked #end>$action.getText('priki.admin.signUp.reader')
+				<input class="inputRadio" type="radio" name="signUpAs" value="2" #if ($signUpAs == 2) checked #end >$action.getText('priki.admin.signUp.editor')
+
+     				</p></td></tr>
+     		</table>
+     		
+		</div>
+		</div>     		
+     	
+     		<div class="contentbox-full">
+	 	<div class="contentbox-title-shading-small bg-blue03 box-on">&nbsp;</div>
+		<div class="contentbox-title-shading-small">$action.getText('priki.admin.mailConfiguration')</div>
+		<div class="contentbox-noshading">
+				
+		<table width=100%>	
+		   <tr><td width=40%><p class="paragrahForm"><b>$action.getText('priki.admin.mail.smtpHost')</b>:
+		   </td><td> <input class="inputText" type="text" name="smtpHost" value="$!smtpHost" /></p></td></tr>
+		   <tr><td><p class="paragrahForm"><b>$action.getText('priki.admin.mail.smtpPort')</b>: 
+		   </td><td> <input class="inputText" type="text" name="smtpPort" value="$!smtpPort" /></p></td></tr>
+		   <tr><td><p class="paragrahForm"><b>$action.getText('priki.admin.mail.smtpUser')</b>: 
+		   </td><td> <input class="inputText" type="text" name="smtpUser" value="$!smtpUser" /></p></td></tr>
+		   <tr><td><p class="paragrahForm"><b>$action.getText('priki.admin.mail.smtpPassword')</b>: 
+		   </td><td> <input class="inputText" type="password" name="smtpPassword" value="$!smtpPassword" /></p></td></tr>
+		   <tr><td><p class="paragrahForm"><b>$action.getText('priki.admin.mail.fromMail')</b>: 
+		   </td><td> <input class="inputText" type="text" name="fromMail" value="$!fromMail" /></p></td></tr>
+		   <tr><td><p class="paragrahForm"><b>$action.getText('priki.admin.mail.fromName')</b>: 
+		   </td><td> <input class="inputText" type="text" name="fromName" value="$!fromName" /></p></td></tr>				   
+		   </p>		
+		</table>   
+		
+		</div>
+		</div>		     	
+     		<br>
+     		
+		<input class="inputSubmit" type="submit" name="Save" value="$action.getText('priki.saveButton')">	
+		<br>
+	</form>	
+
+</div>
+		
+#parse("interface/includes/footer.vm")

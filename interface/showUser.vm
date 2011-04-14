@@ -1,0 +1,50 @@
+#set($showUser = true)
+#parse("interface/includes/imports.vm")
+#parse("interface/includes/header.vm")
+
+<!-- 	CONTENT -->
+<div class="content content-font">
+
+	<!-- Text container -->
+	<div class="contentbox-container">
+		<div class="contentbox-full">
+			<h1 class="line-black-titles">$action.getText('priki.userProfile')</h1> 
+		
+			<form name="formLogin" id="formLogin" method="post" action="$basePath/postUser.pr">
+			  <table  border="0">
+			    <tr>
+			      <td width=150px>$action.getText('priki.userProfile.user')</td>
+			      <td>$!user</td>
+			    </tr>
+			    <tr>
+			      <td>$action.getText('priki.userProfile.oldPassword')</td>
+			      <td><input class="inputPassword" type="password" name="oldPassword" id="oldPassword" value="$!oldPassword"></td>
+			    </tr>
+			    <tr>
+			      <td>$action.getText('priki.userProfile.newPassword')</td>
+			      <td><input class="inputPassword" type="password" name="newPassword" id="newPassword" value="$!newPassword"></td>
+			    </tr>
+			    <tr>
+			      <td>$action.getText('priki.userProfile.name')</td>
+			      <td><input class="inputText" type="text" size=30 name="completeName" id="completeName" value="$!completeName"></td>
+			    </tr>
+			    <tr>
+			      <td>$action.getText('priki.userProfile.email')</td>
+			      <td><input class="inputText" type="text" size=30 name="email" id="email" value="$!email"></td>
+			    </tr>			    
+			    <tr>
+			      <td>$action.getText('priki.userProfile.escortWiki')</td>
+			      <td><input class="inputCheckbox" type="checkbox" name="escortWiki" value="escortWiki"  	#if (${escortWiki.equals($action.getText('priki.yes'))}) checked #end /></td>
+			    </tr>			
+			    			    
+			    <tr>
+			      <td>&nbsp;</td>
+			      <td><input class="inputSubmit" type="submit" value="$action.getText('priki.saveButton')"></td>
+			    </tr>
+			  </table>
+			</form>
+      		</div>
+   	</div>				
+</div>	   	
+
+#parse("interface/includes/footer.vm")

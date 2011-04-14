@@ -1,0 +1,9 @@
+#macro( showVisibilitySidebar $keyword )
+#if (!${accessManager.isPublic($keyword)})
+	<div class="sidebarbox-border bg-red02">
+    	<div class="sidebarbox-title-shading bg-red05">
+    	<center>${accessManager.getPageType($keyword)}</center>
+   		</div>
+	</div>
+#end
+#end

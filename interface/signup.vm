@@ -1,0 +1,41 @@
+#set($signUp = true)
+#parse("interface/includes/imports.vm")
+#parse("interface/includes/header.vm")
+
+<!-- 	CONTENT -->
+<div class="content content-font">
+
+	<!-- Text container -->
+	<div class="contentbox-container">
+		<div class="contentbox-full">
+			<h1 class="line-black-titles">$action.getText('priki.signUpMenuItem')</h1> 
+			<form name="formLogin" id="formLogin" method="post" action="$basePath/signUp.pr">
+			  <table width="100%" border="0">
+			    <tr>
+			      <td width="20%">$action.getText('priki.userProfile.user')</td>
+			      <td width="81%"><input class="inputText" type="text" name="user" id="user" value="$!user"></td>
+			    </tr>
+			    <tr>
+			      <td width="20%">$action.getText('priki.userProfile.password')</td>
+			      <td><input class="inputPassword" type="password" name="newPassword" id="password" value="$!newPassword"></td>
+			    </tr>
+			    <tr>
+			      <td width="20%">$action.getText('priki.userProfile.name')</td>
+			      <td><input class="inputText" type="text" name="completeName" id="completeName" value="$!completeName"></td>
+			    </tr>
+			    <tr>
+			      <td width="20%">$action.getText('priki.userProfile.email')</td>
+			      <td><input class="inputText" type="text" name="email" id="email" value="$!email"></td>
+			    </tr>
+			  </table>
+
+			
+				#parse("interface/includes/flood.vm")			    
+				<input class="inputSubmit" type="submit" value="$action.getText('priki.signUpButton')">
+			  
+			</form>
+      	</div>
+   	</div>				
+</div>	   	
+
+#parse("interface/includes/footer.vm")

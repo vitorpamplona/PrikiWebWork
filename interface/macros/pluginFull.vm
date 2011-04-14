@@ -1,0 +1,8 @@
+#macro( pluginFull $plugins)
+
+#foreach ($plugin in $plugins)
+	$!plugin.getHtml()
+#end
+
+#end				  		
+				  		

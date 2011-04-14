@@ -1,0 +1,55 @@
+#parse("interface/includes/imports.vm")
+#parse("interface/includes/header.vm")
+
+  		<!-- 	CONTENT -->
+		<div class="content content-font">
+			<div class="contentbox-full">
+	 			<div class="contentbox-title-shading-small bg-blue03 box-on">&nbsp;</div>
+				<div class="contentbox-title-shading-small">$action.getText('priki.admin.managingUser')</div>
+				<div class="contentbox-noshading">
+
+				<form id="edit" name="edit" method="post" action="$basePath/admin/changeUserRole.pr">
+
+				
+			    <table  border="0">
+			    <tr>
+			      <td><b>$action.getText('priki.userProfile.name')</b></td>
+			      <td><input class="inputText" type="text" name="userCompleteName" id="userCompleteName" value="$!userCompleteName"></td>
+			    </tr>
+			    <tr>
+			      <td><b>$action.getText('priki.userProfile.email')</b></td>
+			      <td><input class="inputText" type="text" name="userEmail" id="userEmail" value="$userEmail"></td>
+			    </tr>
+
+				<tr><td><b>$action.getText('priki.admin.userType.reader') </b> </td><td><input class="inputCheckbox" type="checkbox" name="userIsReader" value="true" #if (${userIsReader.equals("yes")}) checked #end /> </td></tr>
+				<tr><td><b>$action.getText('priki.admin.userType.editor') </b> </td><td><input class="inputCheckbox" type="checkbox" name="userIsEditor" value="true" #if (${userIsEditor.equals("yes")}) checked #end /> </td></tr>
+				<tr><td><b>$action.getText('priki.admin.userType.admin') </b>  </td><td><input class="inputCheckbox" type="checkbox" name="userIsAdmin" value="true" #if (${userIsAdmin.equals("yes")}) checked #end /> </td></tr>
+				<tr><td><b>$action.getText('priki.userProfile.escortWiki') </b>  </td><td><input class="inputCheckbox" type="checkbox" name="userEscortWiki" value="true" #if (${userEscortWiki.equals("yes")}) checked #end /></td></tr>
+
+				<tr><td style="vertical-align:top"><b>$action.getText('priki.escortingPages', [$userCompleteName]): </b></td><td></td></tr>
+				<tr><td colspan=2> 
+				<ul>
+				#foreach ($page in $userEscortingPages) 
+				<li><a href="$basePath/wiki/$page">$page</a> - <a href="$basePath/admin/unescort.pr?user=$user&keyword=$page">Remove</a></li>
+				#end
+				</ul>
+				</td></tr>				
+				
+				
+				</table>	
+				</p>
+				
+				
+				<input type="hidden" name="user" value="$user" />
+				
+				<input class="inputSubmit" type="submit" name="Save" value="$action.getText('priki.saveButton')">	
+
+				</form>				
+				</div>
+			</div>					
+		</div>
+		
+#parse("interface/includes/footer.vm")
+	
+	
+	

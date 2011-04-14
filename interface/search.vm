@@ -1,0 +1,23 @@
+#parse("interface/includes/imports.vm")
+#parse("interface/includes/header.vm")
+
+  		<!-- 	CONTENT -->
+		<div class="content content-font">
+			<div class="contentbox-full">
+					<h1 class="line-black-titles">$action.getText('priki.searchMenuItem') </h1> 
+			
+					$action.getText('priki.search.text') 
+
+					<br> <br> <br> <br>
+
+					<center>
+					<form id="search" name="search" method="get" action="$basePath/search.pr">
+
+					<input class="inputText" type="text" name="keyword" id="keyword" value="" size=40/>
+					<input class="inputSubmit" type="submit" name="Go" value="$action.getText('priki.goButton') ">		
+					</form>	
+					</center>
+			</div>
+		</div>
+		
+#parse("interface/includes/footer.vm")

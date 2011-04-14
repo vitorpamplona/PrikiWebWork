@@ -1,0 +1,12 @@
+## Message: YOU CANNOT SEE THIS PAGE
+<!-- Text container -->
+<div class="contentbox-container">
+	<a id="titleunderline"></a>
+	<div class="contentbox-full">
+		<div class="contentbox-title-shading-small bg-red09 txt-white box-on">&nbsp;</div>
+		<div class="contentbox-title-shading-small bg-red06 txt-white">$action.getText('priki.permissions.title')</div>
+       		<div class="contentbox-shading bg-red03">			
+			<p>$action.getText('priki.permissions.reader')</p>
+		</div>	
+	</div>						
+</div>	

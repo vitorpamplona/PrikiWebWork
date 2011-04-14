@@ -1,0 +1,34 @@
+#parse("interface/includes/imports.vm")
+#parse("interface/includes/header.vm")
+
+  		<!-- 	CONTENT -->
+		<div class="content content-font">
+			<div class="contentbox-full">
+				<h1 class="line-black-titles">$action.getText('priki.modificationsByUser', [$completeUserName])</h1> 
+				<ul>
+				#foreach($key in ${lastChanged.keySet()})
+					<li><a href="$basePath/wiki/${lastChanged.get($key)}">${df.format($key)} - ${lastChanged.get($key).getKeyword()}</a></li>
+					#if (!$firstDate) 
+						#set($firstDate = $key)
+					#end	
+				#end
+				</ul>
+				
+				#if($userAdmin)
+					#if ($firstDate) 
+					<p><a href="$basePath/admin/show.pr?userIP=$postUser&rollbackDate=${df.format($firstDate)}">$action.getText('priki.rollback')</a></p>
+					#else 
+					<p><a href="$basePath/admin/show.pr?userIP=$postUser">$action.getText('priki.rollback')</a></p>			
+					#end	
+				#end					
+				
+				<h1 class="line-black-titles">$action.getText('priki.escortingPages', [$completeUserName])</h1>
+				<ul> 
+				#foreach ($page in $userEscortingPages) 
+				<li><a href="$basePath/wiki/$page">$page</a></li>
+				#end
+				</ul>			
+			</div>
+		</div>
+		
+#parse("interface/includes/footer.vm")

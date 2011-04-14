@@ -1,0 +1,3 @@
+#set ($basePath  = "$!{req.contextPath}")
+#set ($imgPath   = "${basePath}/interface/img")
+#bean("org.priki.service.AccessManagerBean" $accessManager)

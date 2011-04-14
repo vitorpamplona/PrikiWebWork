@@ -1,0 +1,9 @@
+#if (!$logged)
+<p>
+<img src="$basePath/flood.jpg" /><br>
+$action.getText('priki.flood.text')
+<br>
+<input class="inputText" type="text" id="floodValidation" name="floodValidation" value="" size=20/>
+</p>
+#end
+<p></p>

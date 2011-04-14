@@ -1,0 +1,95 @@
+#parse("interface/includes/imports.vm")
+
+#set ($dtree=true)
+
+#parse("interface/includes/header.vm")
+
+<!-- 	CONTENT -->
+<div class="content content-font">
+	<div class="contentbox-full">
+		<h1 class="line-black-titles">$action.getText('priki.search.results')</h1> 
+			
+		##$action.getText('priki.search.results.text', [${searchResults.size()}])
+		
+		#if ($searchResults.size()>0) 
+    			$action.getText('priki.search.results.found', [${basePath}])
+		#else
+			$action.getText('priki.search.results.notFound', [${basePath}])				
+		#end 
+
+		<div class="dtree" id="quad">
+				
+			<a href="javascript: d.openAll();">$action.getText('priki.openAll')</a> | <a href="javascript: d.closeAll();">$action.getText('priki.closeAll')</a>
+			<BR><BR>	
+			<script type="text/javascript">
+				d = new dTree('d');
+				d.add(0,-1,'$action.getText('priki.search.result.keywordsFound')');
+				#set ($i = 0)
+				#foreach ($result in $searchResults)
+					#set ($i = $i+1)
+					#if (${result.hasDefinition()})
+					    d.add($i, 0, "${result.keyword}", "$basePath/wiki/${result.keyword}", '', '', "$basePath/interface/includes/tree/img/page_filled.gif", "$basePath/interface/includes/tree/img/page_filled.gif");
+					#else
+					    d.add($i, 0, "${result.keyword}", "$basePath/wiki/${result.keyword}", '', '', "$basePath/interface/includes/tree/img/page.gif", "$basePath/interface/includes/tree/img/page.gif");			        
+					#end
+					
+					#set ($pai = $i)						
+					#foreach ($result2 in $result.related) 
+						#set ($i = $i+1)
+						#if (${result2.hasDefinition()})	
+						    d.add($i, $pai, "${result2.keyword}", "$basePath/wiki/${result2.keyword}", '', '', "$basePath/interface/includes/tree/img/page_filled.gif", "$basePath/interface/includes/tree/img/page_filled.gif");
+						#else
+						    d.add($i, $pai, "${result2.keyword}", "$basePath/wiki/${result2.keyword}", '', '', "$basePath/interface/includes/tree/img/page.gif", "$basePath/interface/includes/tree/img/page.gif");			        
+					    	#end				
+					    
+						#set ($pai2 = $i)							
+						#foreach ($result3 in $result2.related) 
+							#set ($i = $i+1)
+							#if (${result3.hasDefinition()})	
+							    	d.add($i, $pai2, "${result3.keyword}", "$basePath/wiki/${result3.keyword}", '', '', "$basePath/interface/includes/tree/img/page_filled.gif", "$basePath/interface/includes/tree/img/page_filled.gif");
+							#else
+						    		d.add($i, $pai2, "${result3.keyword}", "$basePath/wiki/${result3.keyword}", '', '', "$basePath/interface/includes/tree/img/page.gif", "$basePath/interface/includes/tree/img/page.gif");			        
+						    	#end				
+						    
+							#set ($pai3 = $i)		
+							#foreach ($result4 in $result3.related) 
+								#set ($i = $i+1)
+								#if (${result4.hasDefinition()})	
+								    d.add($i, $pai3, "${result4.keyword}", "$basePath/wiki/${result4.keyword}", '', '', "$basePath/interface/includes/tree/img/page_filled.gif", "$basePath/interface/includes/tree/img/page_filled.gif");
+								#else
+							    	d.add($i, $pai3, "${result4.keyword}", "$basePath/wiki/${result4.keyword}", '', '', "$basePath/interface/includes/tree/img/page.gif", "$basePath/interface/includes/tree/img/page.gif");			        
+							    #end	
+		
+								#set ($pai4 = $i)		
+								#foreach ($result5 in $result4.related) 
+									#set ($i = $i+1)
+									#if (${result5.hasDefinition()})	
+									    d.add($i, $pai4, "${result5.keyword}", "$basePath/wiki/${result5.keyword}", '', '', "$basePath/interface/includes/tree/img/page_filled.gif", "$basePath/interface/includes/tree/img/page_filled.gif");
+									#else
+								    	d.add($i, $pai4, "${result5.keyword}", "$basePath/wiki/${result5.keyword}", '', '', "$basePath/interface/includes/tree/img/page.gif", "$basePath/interface/includes/tree/img/page.gif");			        
+								    #end				
+								#end					    
+							    			
+							#end
+						#end
+					#end
+				#end
+						
+				document.write(d);	
+			</script>
+				
+		</div>
+		
+		<br>
+				
+				$action.getText('priki.search.result.dontFound') 
+				
+				<form id="search" name="search" method="get" action="$basePath/search.pr">
+				<p><b>$action.getText('priki.searchMenuItem')</b></p>
+				<input type="text" name="keyword" id="keyword" value="" size=40/>
+				<input type="submit" name="Go" value="$action.getText('priki.goButton')">		
+				</form>	
+			</div>
+		</div>								
+	
+#parse("interface/includes/footer.vm")

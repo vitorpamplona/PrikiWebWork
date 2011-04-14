@@ -1,0 +1,59 @@
+#parse("interface/includes/imports.vm")
+#parse("interface/includes/header.vm")
+
+  		<!-- 	CONTENT -->
+		<div class="content content-font">
+			<div class="contentbox-full">
+	 			<div class="contentbox-title-shading-small bg-blue03 box-on">&nbsp;</div>
+				<div class="contentbox-title-shading-small">$action.getText('priki.admin.editingI18N', [$i18nKey])</div>
+				<div class="contentbox-noshading">
+
+				<form id="edit" name="edit" method="post" action="$basePath/admin/updateI18N.pr">
+
+				
+			    <table  border="0">
+			    <tr>
+			      <td><b>$action.getText('priki.admin.i18n.language')</b></td>
+			      <td>
+			      
+			      #if ($i18nNewLanguage =="")
+			      	#set($i18nNewLanguage = "${defaultI18n}") 
+			      #end
+
+			      <select size="1" name="i18nNewLanguage" id="i18nNewLanguage">
+						<option #if ($i18nNewLanguage=="en_US") selected #end value="en_US">$action.getText('priki.admin.defaultI18n.en_US')</option>
+						<option #if ($i18nNewLanguage=="pt_BR") selected #end value="pt_BR">$action.getText('priki.admin.defaultI18n.pt_BR')</option>
+				  </select>
+				  </td>
+			    </tr>
+			    <tr>
+			      <td><b>$action.getText('priki.admin.i18n.key')</b></td>
+			      <td>
+			            <select name="i18nNewKey" id="i18nNewKey" onChange="document.getElementById('i18nText').value=options[selectedIndex].title;">
+               				#foreach ($item in $allI18NKeys)
+               					<option #if ($i18nNewKey==$item) selected #end value="$item" title="${action.escapeHTML($action.getText($item))}">$item</option>
+               				#end
+          				</select>
+			    </tr>
+			    <tr>
+			      <td><b>$action.getText('priki.admin.i18n.text')</b></td>
+			      <td>
+			       <textarea rows=20 cols=100 name="i18nText" id="i18nText" >$!{i18nText} </textarea>
+			       </td>
+			    </tr>			    
+				</table>	
+				</p>
+				
+				<input type="hidden" name="i18nLanguage" value="$i18nLanguage" />
+				<input type="hidden" name="i18nKey" value="$i18nKey" />
+				
+				<input class="inputSubmit" type="submit" name="Save" value="$action.getText('priki.saveButton')">	
+
+				</form>				
+				</div>
+			</div>					
+		</div>
+		
+#parse("interface/includes/footer.vm")
+	
+	

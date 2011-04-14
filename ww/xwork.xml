@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" "http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+<xwork>
+
+    <include file="webwork-default.xml" />
+
+    <package name="priki" extends="webwork-default">
+
+        <interceptors>
+	        <interceptor name="loginAdminInterceptor" class="org.priki.interceptor.LoginAdminInterceptor" />
+	        <interceptor name="loginCookieInterceptor" class="org.priki.interceptor.LoginCookieInterceptor" />
+   	        <interceptor name="i18n" class="org.priki.interceptor.I18nInterceptor" />
+
+            <interceptor-stack name="stack">
+            	<interceptor-ref name="loginCookieInterceptor" />
+	            <interceptor-ref name="i18n"> 
+		             <param name="parameterName">lang</param>
+	            </interceptor-ref>              
+                <interceptor-ref name="component" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+            
+            <interceptor-stack name="adminStack">
+				<interceptor-ref name="loginCookieInterceptor" />
+	            <interceptor-ref name="i18n"> 
+		             <param name="parameterName">lang</param>
+	            </interceptor-ref>				
+                <interceptor-ref name="component" />
+                <interceptor-ref name="defaultStack" />
+				<interceptor-ref name="loginAdminInterceptor" />
+            </interceptor-stack>            
+        </interceptors>
+		
+		<default-interceptor-ref name="stack"/>
+
+		<global-results> 
+            <result name="error" type="velocity">
+                <param name="location">/interface/error.vm</param>
+            </result>
+            <result name="login" type="redirect">showLogin.pr</result>
+		</global-results> 
+
+		<!-- LOGIN -->
+
+		<action name="showLogin" class="org.priki.actions.PrikiAction" method="index">
+			<result name="success" type="velocity">
+				<param name="location">/interface/login.vm</param>
+			</result>
+			<result name="error" type="redirect">/showLogin.pr</result>
+        </action>
+
+		<action name="verifyLogin" class="org.priki.actions.LoginAction" method="login">
+			<result name="success" type="redirect">/wiki/</result>
+			<result name="error" type="redirect">/showLogin.pr</result>
+        </action>
+
+		<action name="logout" class="org.priki.actions.LoginAction" method="logout">
+			<result name="success" type="redirect">/wiki/</result>
+        </action>
+
+		<action name="forgotLogin" class="org.priki.actions.LoginAction" method="forgot">
+			<result name="success" type="redirect">/wiki/</result>
+        </action>
+
+
+		<!-- // LOGIN -->
+
+	</package>
+
+	<include file="wiki.xml" />
+	<include file="admin.xml" />	
+</xwork>

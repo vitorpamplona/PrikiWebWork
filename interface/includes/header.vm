@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta http-equiv="content-language" content="pt-BR,en-US">
+  <meta name="copyright" content="$action.getText('priki.footer.copyright')">
+  <meta name="robots" content="follow">
+  <meta name="revisit-after" content="3 days">
+  <meta name="rating" content="general">
+
+#if (!$keyword)
+  <meta name="description" content="$siteName, $slogan" />
+#else
+	#if ($definitionOnlyText)
+	  <meta name="description" content="${action.removeHTML($definitionOnlyText.substring(0,$definitionOnlyText.indexOf('</p>')))}" />
+	#else
+	  <meta name="description" content="About: $keyword, Author: $action.getText('priki.footer.copyright')" />
+	#end	
+#end
+  <meta name="keywords" content="#foreach($result in $globalTags)$result.keyword, #end" />
+  <meta name="author" content="$siteName" />
+  <link rel="alternate" type="application/rss+xml" title="$siteName's Feed" href="$path/lastChangesRss.pr" />
+  
+#if ($redirectTo)
+  <META http-equiv="refresh" content="3;URL=$redirectTo"> 	
+#end
+
+#if ($keyword)
+  <title>$keyword :: $siteName</title>
+#else
+  <title>$siteName :: $slogan</title>
+#end
+  <link rel="stylesheet" type="text/css" media="all" href="$basePath/interface/css/style.css" />
+
+#if ($dtree)
+  <link rel="StyleSheet" href="$basePath/interface/includes/tree/dtree.css" type="text/css"> </link>
+  <script type="text/javascript" src="$basePath/dtree.pr"></script>        
+#end
+
+#pluginFull($pluginsInsideHead)
+
+#if ($tinymce)
+  #parse("interface/includes/tinymce.vm")
+#end  
+
+<script language="JavaScript">
+	function toggleVisibility(me){
+   		el = document.getElementById(me);
+		if (el.style.display=='none'){
+			el.style.display='';
+		} else {
+			el.style.display='none';
+		}
+	}	
+</script>
+  
+</head>
+
+<body>
+    <div class="page-container">
+	
+  	<!-- HEADER -->
+    <!-- Global Navigation -->
+    <div class="nav-global-container">
+      <div class="nav-global nav-global-font">
+		<ul class="minor-size">
+    	  <li><a href="$basePath/wiki/$action.getText('priki.header.AboutUs')">$action.getText('priki.header.AboutUs')</a></li>															
+          <li><a href="$basePath/show.pr?keyword=Front Page&lang=en_US"><img class="img-flag" src="$imgPath/flag_us.gif" title="Website in English" alt=""></a></li>
+          <li><a href="$basePath/show.pr?keyword=Página Inicial&lang=pt_BR"><img class="img-flag" src="$imgPath/flag_br.gif" title="Website em Português" alt=""></a></li>
+        </ul>
+	  </div>
+    </div>
+    
+    <!-- Sitename and Banner -->
+	<div class="site-name">
+		$siteName
+	  	<div class="site-slogan">				 
+			$slogan
+		</div>
+	</div>	
+	<div class="search-frame">
+		
+		<form id="search" name="search" method="get" action="$basePath/search.pr">
+			$action.getText('priki.searchMenuItem')<BR>
+			<input class="inputSearch" type="text" name="keyword" id="keyword" value="" size=10/>
+			<input class="buttonSearch"  type="submit" name="Go" value="$action.getText('priki.goButton')">		
+		</form>	
+	</div> 		 						
+	<div><img class="img-header" src="$imgPath/header.gif" alt=""/></div>
+		
+    	<div class="nav-main nav-main-font">			
+		<!-- Main Navigation -->
+		<ul class="minor-size">
+        	<li class="minor-size"><a href="$basePath/wiki/" #if (!${keyword.equals($action.getText('priki.frontPageMenuItem'))}) class="selected" #end>$action.getText('priki.frontPageMenuItem')</a></li>
+        	<li class="minor-size"><a href="$basePath/tagIndex.pr" #if (!$lastChanges) class="selected" #end>$action.getText('priki.indexMenuItem')</a></li>
+        	<li class="minor-size"><a href="$basePath/lastChanges.pr" #if (!$lastChanges) class="selected" #end>$action.getText('priki.lastChangesMenuItem')</a></li>
+        	#if (${accessManager.isCanPost(null)})  
+        	<li class="minor-size"><a href="$basePath/new.pr" #if (!$new) class="selected" #end>$action.getText('priki.newMenuItem')</a></li>
+        	#end
+			#if ($logged)
+        	<li class="minor-size"><a href="$basePath/showUser.pr" #if (!$showUser) class="selected" #end>$action.getText('priki.editProfileMenuItem')</a></li>        				
+			#else
+        	<li class="minor-size"><a href="$basePath/showSignUp.pr" #if (!$signUp) class="selected" #end>$action.getText('priki.signUpMenuItem')</a></li>        	
+        	#end
+        	#if ($userAdmin)
+        	<li class="minor-size"><a href="$basePath/admin/show.pr" #if (!$adminShow) class="selected" #end>$action.getText('priki.adminMenuItem')</a></li>
+        	#end
+		
+		</ul>       			
+		
+		#if ($logged)
+		<div>$action.getText('priki.welcome', [$basePath])</div>
+		#elseif(!$loginPage)
+		<form name="formLogin" id="formLogin" method="post" action="$basePath/verifyLogin.pr">
+		      	$action.getText('priki.userProfile.user') &nbsp;
+		      	<input class="loginInput" type="text" name="user" id="user" />
+		      	$action.getText('priki.userProfile.password') &nbsp;
+		      	<input class="loginInput" type="password" name="password" id="password" />
+			$action.getText('priki.login.useCookie')
+		      	<input class="loginCheckbox" type="checkbox" name="useCookie" value="useCookie" #if (${useCookie.equals($action.getText('priki.yes'))}) checked #end />
+		      	<input src="$imgPath/login.gif" type="image" value="Login" />
+   	        </form>		      	
+		#end
+		
+	</div>
+	
+	<div class="buffer"></div>
+
+	<!-- WRAP CONTENT AND SIDEBAR -->
+    <div class="container-content-sidebar-front">
+
+	<!-- div class="left-menu">
+	    <div class="left-sidebarbox-border bg-blue02">
+	    	<div class="sidebarbox-title-shading bg-blue05">
+	    	     $action.getText('priki.leftMenu')
+	    	</div>
+	    	
+	    	<ul>
+        	<li class="minor-size"><a href="$basePath/wiki/" #if (!${keyword.equals($action.getText('priki.frontPageMenuItem'))}) class="selected" #end>$action.getText('priki.frontPageMenuItem')</a></li>
+        	<li class="minor-size"><a href="$basePath/lastChanges.pr" #if (!$lastChanges) class="selected" #end>$action.getText('priki.lastChangesMenuItem')</a></li>
+        	<li class="minor-size"><a href="$basePath/new.pr" #if (!$new) class="selected" #end>$action.getText('priki.newMenuItem')</a></li>
+			#if ($logged)
+        	<li class="minor-size"><a href="$basePath/showUser.pr" #if (!$showUser) class="selected" #end>$action.getText('priki.editProfileMenuItem')</a></li>        				
+			#else
+        	<li class="minor-size"><a href="$basePath/showSignUp.pr" #if (!$signUp) class="selected" #end>$action.getText('priki.signUpMenuItem')</a></li>        	
+        	#end
+        	#if ($userAdmin)
+        	<li class="minor-size"><a href="$basePath/admin/show.pr" #if (!$adminShow) class="selected" #end>$action.getText('priki.adminMenuItem')</a></li>
+        	#end
+	    	</ul>
+	    </div>		
+	</div -->
+	<!-- Continue in index.vm -->      
+	
+		

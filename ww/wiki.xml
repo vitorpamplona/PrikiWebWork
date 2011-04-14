@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" "http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+<xwork>
+	<package name="wiki" extends="priki" namespace="">
+		<action name="show" class="org.priki.actions.PrikiAction" method="showWikiword">
+			<result name="success" type="velocity">
+				<param name="location">/interface/show.vm</param>
+			</result>	
+		</action>
+
+		<action name="edit" class="org.priki.actions.PrikiAction" method="showWikiword">
+			<result name="success" type="velocity">
+				<param name="location">/interface/edit.vm</param>
+			</result>
+		</action>		
+
+		<action name="new" class="org.priki.actions.PrikiAction" method="index">
+			<result name="success" type="velocity">
+				<param name="location">/interface/edit.vm</param>
+			</result>
+		</action>
+
+		<action name="post" class="org.priki.actions.PostPrikiAction" method="postWikiword">
+            <result name="success" type="redirect">/wiki/${keyword}</result>
+        </action>
+        
+		<action name="escort" class="org.priki.actions.EscortingAction" method="escortWikiword">
+            <result name="success" type="redirect">/wiki/${keyword}</result>
+        </action>
+        
+        <action name="unescort" class="org.priki.actions.EscortingAction" method="unescortWikiword">
+            <result name="success" type="redirect">/wiki/${keyword}</result>
+        </action>
+        
+       	<action name="history" class="org.priki.actions.HistoryAction" method="history">
+			<result name="success" type="velocity">
+				<param name="location">/interface/history.vm</param>
+			</result>	
+		</action>
+		
+		<action name="userHistory" class="org.priki.actions.HistoryAction" method="userHistory">
+			<result name="success" type="velocity">
+				<param name="location">/interface/user.vm</param>
+			</result>	
+		</action>
+                
+		<action name="lastChanges" class="org.priki.actions.PrikiAction" method="index">
+            <result name="success" type="velocity">
+                <param name="location">/interface/lastChanges.vm</param>
+            </result>
+        </action>   
+        
+		<action name="tagIndex" class="org.priki.actions.IndexAction" method="tagIndex">
+            <result name="success" type="velocity">
+                <param name="location">/interface/tagIndex.vm</param>
+            </result>
+        </action>           
+        
+        <action name="tagIndexRss" class="org.priki.actions.IndexAction" method="tagIndex">
+            <result name="success" type="velocity">
+                <param name="location">/interface/tagIndexRss.vm</param>
+            </result>
+        </action>        
+        
+		<action name="lastChangesRss" class="org.priki.actions.PrikiAction" method="index">
+            <result name="success" type="velocity">
+                <param name="location">/interface/lastChangesRss.vm</param>
+            </result>
+        </action>           
+        
+		<action name="index" class="org.priki.actions.PrikiAction" method="index">
+			<result name="success" type="redirect">/wiki/</result>
+        </action>                        
+
+		<action name="dtree" class="org.priki.actions.PrikiAction" method="index">
+            <result name="success" type="velocity">
+                <param name="location">/interface/includes/tree/dtree.vm</param>
+            </result>
+        </action>   
+
+		<action name="search" class="org.priki.actions.SearchAction" method="search">
+            <result name="success" type="velocity">
+                <param name="location">/interface/searchResults.vm</param>
+            </result>
+            <result name="show_wikiword" type="redirect">/wiki/${keyword}</result>
+        </action>
+
+		<action name="showSearch" class="org.priki.actions.PrikiAction" method="index">
+            <result name="success" type="velocity">
+                <param name="location">/interface/search.vm</param>
+            </result>
+        </action>
+        
+		<action name="showSignUp" class="org.priki.actions.UserAction" method="showSignUp">
+			<result name="success" type="velocity">
+				<param name="location">/interface/signup.vm</param>
+			</result>	
+		</action>  
+		
+		<action name="signUp" class="org.priki.actions.UserAction" method="signUp">
+			<result name="success" type="redirect">/wiki/</result>
+		</action>   	
+		
+		<action name="showUser" class="org.priki.actions.UserAction" method="showUser">
+			<result name="success" type="velocity">
+				<param name="location">/interface/showUser.vm</param>
+			</result>	
+		</action>  
+		
+		<action name="postUser" class="org.priki.actions.UserAction" method="postUser">
+			<result name="success" type="redirect">
+				<param name="location">logout.pr</param>
+				<param name="user">${user}</param>
+				<param name="password">${newPassword}</param>				
+			</result>
+		</action>   
+		
+		<action name="postComment" class="org.priki.actions.PostPrikiAction" method="postComment">
+          <result name="success" type="redirect">/wiki/${keyword}</result>
+		</action>			      
+                
+	</package>
+</xwork>

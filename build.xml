@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Priki" default="build">
+    <!-- ================================= 
+         Properties & property files
+         ================================= -->
+    <!-- source folders -->
+    <property name="src.java.dir" location="src" />
+    <property name="src.conf.dir" location="ww" />
+    <property name="src.velocity.dir" location="interface" />
+    <property name="src.web.dir" location="WEB-INF" />
+    <!-- lib folders -->
+    <property name="lib.dir" location="WEB-INF/lib" />
+    <!-- build folders -->
+    <property name="target.dir" location="target" />
+    <property name="dist.dir" location="${target.dir}/dist" />
+    <property name="war.dir" location="${target.dir}/war" />
+    <property name="classes.dir" location="${war.dir}/WEB-INF/classes" />
+    <property name="docs.dir" location="${target.dir}/docs" />
+    <property name="war.file" location="${dist.dir}/priki.war" />
+	<property name="zip.file" location="${dist.dir}/priki-src.zip" />	
+	
+    <!-- ================================= 
+         Classpath vars
+         ================================= -->
+    <path id="build.classpath">
+        <fileset dir="${lib.dir}">
+            <include name="*.jar" />
+        </fileset>
+    </path>
+    <!-- ================================= 
+          target: clean
+         ================================= -->
+    <target name="clean" description="">
+        <delete dir="${classes.dir}" failonerror="false" />
+        <delete dir="${war.dir}" failonerror="false" />
+        <delete dir="${dist.dir}" failonerror="false" />
+        <delete dir="${target.dir}" failonerror="false" />
+    </target>
+    
+	<!-- ================================= 
+          target: init
+         ================================= -->
+    <target name="init" description="Prepares the environment to the other targets">
+        <mkdir dir="${target.dir}" />
+        <mkdir dir="${dist.dir}" />
+        <mkdir dir="${war.dir}" />
+        <mkdir dir="${classes.dir}" />
+        <mkdir dir="${lib.dir}" />
+    </target>
+    
+	<!-- ================================= 
+          target: build
+         ================================= -->
+    <target name="build" depends="init" description="">
+        <javac encoding="utf-8" srcdir="${src.java.dir}" destdir="${classes.dir}" source="1.6" target="1.6" debug="false">
+        	<classpath>
+        		<fileset dir="${lib.dir}" includes="*.jar">
+        		</fileset>
+        	</classpath>
+    	</javac>
+        <copy todir="${war.dir}/WEB-INF">
+            <fileset dir="${src.web.dir}" />
+        </copy>
+        <copy todir="${war.dir}/interface">
+        	<fileset dir="${src.velocity.dir}"/>
+        </copy>
+            <copy todir="${war.dir}">
+            	<fileset dir="">
+					<include name="*.jsp"/>
+            		<include name="*.php"/>
+               		<include name="*.html"/>            		
+            	</fileset>
+            </copy>    	
+    </target>
+    <!-- ================================= 
+          target: clean build
+         ================================= -->
+    <target name="clean-build" depends="clean,build" />
+    <!-- ================================= 
+          target: war
+         ================================= -->
+    <target name="war" depends="build" description="">
+        <jar destfile="${war.file}">
+            <fileset dir="${war.dir}" />
+        </jar>
+        <zip destfile="${zip.file}">
+        	<fileset dir="">
+				<exclude name="target/"/>
+        		<exclude name="base/"/>
+           		<exclude name="work/"/>
+        		<exclude name="tldCache.ser"/>
+        		<exclude name="SESSIONS.ser"/>
+        	</fileset>
+        </zip>    	
+    	
+    </target>
+
+    <target name="remote deploy" depends="war" description="">
+    	<scp file="${war.file}" todir="${deploy.command}"></scp>
+    </target>
+
+</project>

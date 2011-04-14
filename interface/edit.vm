@@ -1,0 +1,98 @@
+#parse("interface/includes/imports.vm")
+
+#if (!$keyword)
+#set ($new=true)
+#set ($visibility = ${action.getDefaultVisibility()})
+#set ($caseSensitive = ${action.getDefaultCaseSensitive()})
+#end
+
+#set ($tinymce=true)
+
+#parse("interface/includes/header.vm")
+ 		
+	<div class="content content-font">
+		
+		#if (!${accessManager.isCanPost($keyword)})  
+			<!-- Text container -->
+			<div class="contentbox-container">
+				<a id="titleunderline"></a>
+				<div class="contentbox-full">
+		 			<div class="contentbox-title-shading-small bg-red09 txt-white box-on">&nbsp;</div>
+					<div class="contentbox-title-shading-small bg-red06 txt-white">$action.getText('priki.permissions.title')</div>
+	        		<div class="contentbox-shading bg-red03">			
+						<p>$action.getText('priki.permissions.editor')</p>
+					</div>	
+				</div>						
+			</div>					
+		#else		
+		
+			#if ($readonlyWiki)
+				<!-- Text container -->
+				<div class="contentbox-container">
+					<a id="titleunderline"></a>
+					<div class="contentbox-full">
+			 			<div class="contentbox-title-shading-small bg-red09 txt-white box-on">&nbsp;</div>
+						<div class="contentbox-title-shading-small bg-red06 txt-white">$action.getText('priki.readonlyTitle')</div>
+		        		<div class="contentbox-shading bg-red03">			
+							<p>$action.getText('priki.readonlyMessage')</p>
+						</div>	
+					</div>						
+				</div>					
+			#else	  		
+		
+			<!-- Text container -->
+			<div class="contentbox-container">
+				<div class="contentbox-full">
+					#if ($keyword)
+ 						<h1 class="line-black-titles">$action.getText('priki.editingKeyword')</h1>
+ 					#else
+ 						<h1 class="line-black-titles">$action.getText('priki.newMenuItem')</h1>
+ 					#end 
+					<form id="edit" name="edit" method="post" action="$basePath/post.pr">
+						<input type="hidden" name="keyword" value="$!keyword" />
+		
+		
+						<div class="sidebar sidebar-font">	
+						<div class="sidebarbox-border bg-green02">
+						   	<div class="sidebarbox-title-shading bg-green05">$action.getText('priki.postOptions')</div>
+    						<p><input type="checkbox" name="caseSensitive" value="true" #if (${caseSensitive.equals("true")}) checked #end />$action.getText('priki.caseSensitive')</p>
+						</div>	
+						
+						<div class="sidebarbox-border bg-red02">
+						   	<div class="sidebarbox-title-shading bg-red05">$action.getText('priki.visibility')</div>
+
+							<input class="inputRadio" type="radio" name="visibility" value="0" #if ($visibility == 0) checked #end>$action.getText('priki.visibility.public')<br>
+							<!--p><input class="inputRadio" type="radio" name="visibility" value="1" #if ($visibility == 1) checked #end>User</p-->
+							<input class="inputRadio" type="radio" name="visibility" value="2" #if ($visibility == 2) checked #end>$action.getText('priki.visibility.reader')<br>
+							<input class="inputRadio" type="radio" name="visibility" value="3" #if ($visibility == 3) checked #end>$action.getText('priki.visibility.editor')<br>
+							<input class="inputRadio" type="radio" name="visibility" value="4" #if ($visibility == 4) checked #end>$action.getText('priki.visibility.admin')	<br>						
+						</div>	
+						</div>
+						<div style="float:left; width:79%">
+						<p>
+						#if ($keyword)
+						$action.getText('priki.renameTo')
+						#else
+						$action.getText('priki.nameTo')					
+						#end
+						<input class="inputText" type="text" name="newKeyword" value="$!keyword" size=40/> </p>
+						<p>$action.getText('priki.tags'):
+						<input class="inputText" type="text" name="commaSeparatedTags" value="$!commaSeparatedTags" size=40/> </p>
+						<p><textarea style="width:100%" rows=30 name="definitionOnlyText" id="definitionOnlyText" >#if ($definitionOnlyText) $!{definitionOnlyText} #else <p></p> #end </textarea></p>
+
+						#parse("interface/includes/flood.vm")
+						<input class="inputSubmit" type="submit" name="Save" value="$action.getText('priki.saveButton')">	
+
+						</div>
+					</form>	
+					<p>&nbsp;</p>
+				</div>
+	      	</div>	
+
+
+	      	#end
+      	#end	      	
+
+	   </div>   	      	
+
+#parse("interface/includes/footer.vm")
