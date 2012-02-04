@@ -49,6 +49,7 @@ import org.priki.prevalence.EditPluginTransaction;
 import org.priki.prevalence.FixWikiRefersTransaction;
 import org.priki.prevalence.GoodLinkTransaction;
 import org.priki.prevalence.GoodUserTransaction;
+import org.priki.prevalence.RemoveAllCommentsTransaction;
 import org.priki.prevalence.RemoveCommentTransaction;
 import org.priki.prevalence.RemoveEscortWikiwordTransaction;
 import org.priki.prevalence.RemoveI18NTransaction;
@@ -164,6 +165,14 @@ public class AdminAction extends SuperAction {
 		}
 		return SUCCESS;
 	}
+	
+	public String removeAllComments() {
+		RemoveAllCommentsTransaction trans = new RemoveAllCommentsTransaction();
+		Prevalence.getInstance().execute(trans);
+		return SUCCESS;
+	}
+	
+	
 	
     public String postConfig() {
         if (!checkString(siteName, getText("priki.admin.siteName"))

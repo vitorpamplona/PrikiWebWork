@@ -63,6 +63,10 @@
         </action>      
 
 	
+	    <action name="removeAllComments" class="org.priki.actions.AdminAction" method="removeAllComments"> 
+			<result name="success" type="redirect">/admin/show.pr</result>
+        </action> 
+	
 		<action name="updatePlugin" class="org.priki.actions.AdminAction" method="updatePlugin">
 			<result name="success" type="redirect">/admin/show.pr</result>	
 		</action>

@@ -5,7 +5,7 @@
   		<!-- 	CONTENT -->
 		<div class="content content-font">
 		
-		<p align="center"><a href="$basePath/admin/edit.pr">$action.getText('priki.admin.update')</a> - <a href="$basePath/admin/snapshot.pr">$action.getText('priki.admin.snapshot')</a>  - <a href="$basePath/admin/fixWikiRefers.pr">$action.getText('priki.admin.fixWikiRefers')</a></p>
+		<p align="center"><a href="$basePath/admin/edit.pr">$action.getText('priki.admin.update')</a> - <a href="$basePath/admin/snapshot.pr">$action.getText('priki.admin.snapshot')</a> - <a href="$basePath/admin/removeAllComments.pr">$action.getText('priki.admin.removeAllComments')</a>  - <a href="$basePath/admin/fixWikiRefers.pr">$action.getText('priki.admin.fixWikiRefers')</a></p>
 		
 			<div class="contentbox-container">
 			    <div class="contentbox-half-left">

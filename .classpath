@@ -4,24 +4,33 @@
 	<classpathentry kind="src" path="ww"/>
 	<classpathentry kind="src" path="interface"/>
 	<classpathentry kind="src" path="etc"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/commons-logging.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/velocity-dep.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/webwork.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/xwork.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/oscore.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/log4j.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/simplecaptcha.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/javacc.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/ognl.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/commons-lang.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/servlet-api.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/prevayler-2.3.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/activation.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/mail.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/prikiEngine.jar"/>
-	<classpathentry kind="var" path="TOMCAT_HOME/common/lib/servlet-api.jar"/>
-	<classpathentry kind="var" path="TOMCAT_HOME/common/lib/jasper-runtime.jar"/>
-	<classpathentry kind="var" path="TOMCAT_HOME/common/lib/jsp-api.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activation.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-lang.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javacc.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/log4j.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mail.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ognl.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/oscore.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/prevayler-2.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/prikiEngine.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/simplecaptcha.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/urlrewrite.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/velocity-dep.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/webwork.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xwork.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v6.0">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.web"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_29">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="WEB-INF/classes"/>
 </classpath>
